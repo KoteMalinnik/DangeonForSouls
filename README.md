@@ -1,6 +1,7 @@
 # Dangeon for Souls
 
-Если вы хотите использовать данный проект в своих целях, пожалуйста, сначала свяжитесь с автором.
+RU. Если вы хотите использовать материалы проекта в своих целях - пожалуйста, свяжитесь с автором сначала.
+Copyright © Все права защищены. Калинников Н.С. 2020.
 
-niki9888985@mail.ru
-© Калинников Н.С., 2019
+EN. If you want to use the project materials for your own purposes, please contact the author first.
+Copyright © All rights reserved. Kalinnikov N.S. 2020.
