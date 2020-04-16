@@ -34,6 +34,9 @@ public static class Statements
 		gameOver = newGameOver;
 		Debug.Log($"Конец игры: {gameOver}");
 
-		AudioManager.playGameOverSound();
+		if(gameOver)
+		{
+			AudioManager.playGameOverSound();
+		}
 	}
 }
