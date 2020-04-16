@@ -24,7 +24,7 @@ public class ObjectsGenerator : MonoBehaviour
 		if (instance == null) instance = this;
 		else if (instance = this) Destroy(this);
 
-		GameManager.instance.og = instance;
+		//GameManager.instance.og = instance;
 
 		if (groundPrefab == null) throw new System.Exception("Ground Prefab is not set!");
 		if (holePrefab == null) throw new System.Exception("Hole Prefab is not set!");
