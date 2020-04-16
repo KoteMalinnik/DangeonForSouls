@@ -60,10 +60,8 @@ public class SerializeParametrs : MonoBehaviour
 	/// <param name="defaultValue">Значение по умолчанию.</param>
 	bool loadParametr(string key, bool defaultValue)
 	{
-		var parametrValue = PlayerPrefs.GetInt(key, defaultValue ? 1 : 0);
+		var parametrValue = loadParametr(key, defaultValue ? 1 : 0);
 		bool statementValue = parametrValue == 1;
-
-		Debug.Log($"Параметр {key} загружен. Значение: {statementValue}");
 
 		return statementValue;
 	}
@@ -84,14 +82,12 @@ public class SerializeParametrs : MonoBehaviour
 	public static void saveParametr(string key, bool statementValue)
 	{
 		int parametrValue = statementValue ? 1 : 0;
-		PlayerPrefs.SetInt(key, parametrValue);
-
-		Debug.Log($"Параметр {key} сохранен. Значение: {statementValue}");
+		saveParametr(key, parametrValue);
 	}
 
 	public static void saveAllParametrs()
 	{
-		Debug.Log("Сохранение значений");
+		Debug.Log("Сохранение параметров в PlayerPrefs");
 
 		saveParametr(key_audioStatement, AudioManager.audioStatement);
 		saveParametr(key_bestScoreValue, GameManager.bestScoreValue);

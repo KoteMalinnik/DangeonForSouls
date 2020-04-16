@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Настройка звука
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
 	static AudioSource mainThemeSource;
