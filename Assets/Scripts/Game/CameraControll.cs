@@ -38,19 +38,26 @@ public class CameraControll : MonoBehaviour
 	/// </summary>
 	float offset = 6;
 
+	Transform cachedTransform = null;
+
+	void Awake()
+	{
+		cachedTransform = transform;
+	}
+
 	void Start()
 	{
 		//выставляем камеру на начальную позицию
 		startPosition = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, startDistance);
-		transform.position = startPosition;
+		cachedTransform.position = startPosition;
 	}
 
 	void Update()
 	{
 		var newPotition = new Vector3(targetObject.transform.position.x + offset, 0, endDistance);
 		//С помощью Lerp камера плавно следует за объектом
-		transform.position = Vector3.Lerp(startPosition, newPotition, smooth * Time.deltaTime);
+		cachedTransform.position = Vector3.Lerp(startPosition, newPotition, smooth * Time.deltaTime);
 		//Обновляем значение начальной позиции для последующего Lerp-a
-		startPosition = transform.position;
+		startPosition = cachedTransform.position;
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 
+//!!! Рефакторить
 public class AdvertisementController : MonoBehaviour
 {
     void Start()

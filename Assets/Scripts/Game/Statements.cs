@@ -21,7 +21,7 @@ public static class Statements
 
 
 	/// <summary>
-	/// Состояние проигрыша. True, если Player проиграл
+	/// Состояние конца игры. True, если Player проиграл
 	/// </summary>
 	public static bool gameOver { get; private set; } = false;
 

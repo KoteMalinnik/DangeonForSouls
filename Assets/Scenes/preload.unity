@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1760639881}
   - component: {fileID: 1760639880}
   m_Layer: 0
-  m_Name: LoadParametrs
+  m_Name: ParametrsPreload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
