@@ -19,13 +19,13 @@ public class MenuGUI : MonoBehaviour
 	/// <summary>
 	/// Text, отображающий лучший счет
 	/// </summary>
-	Text bestScoreValue;
+	Text bestScoreValue = null;
 
 	[SerializeField]
 	/// <summary>
 	/// Переключатель звука
 	/// </summary>
-	Toggle soundStatement;
+	Toggle soundStatement = null;
 
 	public void __SwitchSound()
 	{

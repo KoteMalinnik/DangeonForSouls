@@ -8,7 +8,7 @@ public static class GameManager
 	/// <summary>
 	/// Очки лучшего счета
 	/// </summary>
-	public static int bestScoreValue { get; private set; }
+	public static int bestScoreValue { get; private set; } = 0;
 
 	/// <summary>
 	/// Установка очков лучшего счета
@@ -22,7 +22,7 @@ public static class GameManager
 	/// <summary>
 	/// Количество собранных душ
 	/// </summary>
-	public static int colectedSoulsValue { get; private set; }
+	public static int colectedSoulsValue { get; private set; } = 0;
 
 	/// <summary>
 	/// Установка количества собранных душ
@@ -36,7 +36,7 @@ public static class GameManager
 	/// <summary>
 	/// Цена бонуса восстановления
 	/// </summary>
-	public static int recoveryCostValue { get; private set; }
+	public static int recoveryCostValue { get; private set; } = 100;
 
 	/// <summary>
 	/// Установка цены бонуса восстановления

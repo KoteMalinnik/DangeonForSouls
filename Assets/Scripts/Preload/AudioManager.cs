@@ -23,14 +23,14 @@ public class AudioManager : MonoBehaviour
 	/// <summary>
 	/// Состояние звука. True, если звук вкл., в противном случае false
 	/// </summary>
-	public static bool audioStatement { get; private set; }
+	public static bool audioStatement { get; private set; } = true;
 
 	/// <summary>
 	/// Установка значения состояния звука
 	/// </summary>
 	public static void setAudioStatement(bool newAudioStatement)
 	{
-		Debug.Log("Музыка: " + newAudioStatement);
+		Debug.Log($"Звук: {newAudioStatement}");
 		audioStatement = newAudioStatement;
 
 		if (mainThemeSource != null) switchSound();
