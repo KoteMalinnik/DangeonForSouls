@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Переключает состояние видимости soulObject
+/// Переключает состояние видимости объекта Soul
 /// </summary>
 public class SoulVisibilityListener : MonoBehaviour
 {

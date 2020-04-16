@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Анимация объекта Soul
+/// </summary>
 public class SoulAnimation : MonoBehaviour
 {
 	/// <summary>

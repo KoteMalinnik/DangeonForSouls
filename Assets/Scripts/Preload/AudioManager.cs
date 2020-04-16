@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 	public static bool audioStatement { get; private set; } = true;
 
 	/// <summary>
-	/// Установка значения состояния звука
+	/// Установка состояния звука
 	/// </summary>
 	public static void setAudioStatement(bool newAudioStatement)
 	{
