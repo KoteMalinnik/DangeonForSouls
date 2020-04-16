@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SerializeParametrs : MonoBehaviour
 {
+	//Т.к. объект находится только на сцене Preload,
+	//С его помощью необходимо перейти на другую сцену
 	void Awake()
 	{
 		loadAllParametrs();

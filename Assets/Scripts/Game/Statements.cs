@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using UnityEngine;
+
+/// <summary>
 /// Контроль состояний игрового процесса
 /// </summary>
 public static class Statements
@@ -11,7 +13,11 @@ public static class Statements
 	/// <summary>
 	/// Устанавливает состояние паузы как newPause
 	/// </summary>
-	public static void setPause(bool newPause) { pause = newPause;}
+	public static void setPause(bool newPause)
+	{
+		pause = newPause;
+		Debug.Log($"Пауза: {pause}");
+	}
 
 
 	/// <summary>
@@ -23,5 +29,11 @@ public static class Statements
 	/// Устанавливает состояние проигрыша как newGameOver
 	/// </summary>
 	/// <returns><c>true</c>, if pause statement was set, <c>false</c> otherwise.</returns>
-	public static void setGameOver(bool newGameOver) { gameOver = newGameOver; }
+	public static void setGameOver(bool newGameOver)
+	{
+		gameOver = newGameOver;
+		Debug.Log($"Конец игры: {gameOver}");
+
+		AudioManager.playGameOverSound();
+	}
 }

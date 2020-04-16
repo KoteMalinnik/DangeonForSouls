@@ -5,19 +5,54 @@
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-	static AudioSource mainThemeSource;
+	[SerializeField]
+	/// <summary>
+	/// Основная музыкальная тема
+	/// </summary>
+	AudioClip mainThemeMusic = null;
+	static AudioSource mainThemeSource = null;
+
+	[SerializeField]
+	/// <summary>
+	/// Звук, воспроизводимый при проигрыше
+	/// </summary>
+	AudioClip gameOverSound = null;
+	static AudioSource gameOverSource = null;
+
+	[SerializeField]
+	/// <summary>
+	/// Звук, воспроизводимый при столкновении с объектом Soul
+	/// </summary>
+	AudioClip collectingSoulSound = null;
+	static AudioSource collectingSoulSource = null;
 
 	void Awake()
 	{
 		DontDestroyOnLoad(this);
 
-		if (gameObject.TryGetComponent(out mainThemeSource)) return;
-		mainThemeSource = gameObject.AddComponent<AudioSource>();
+		setupAudioSource(audioSource: ref mainThemeSource, audioClip: mainThemeMusic, volume: 0.4f, loop: true, playOnAwake: true);
+		setupAudioSource(audioSource: ref gameOverSource, audioClip: gameOverSound, volume: 0.2f, loop: false, playOnAwake: false);
+		setupAudioSource(audioSource: ref collectingSoulSource, audioClip: collectingSoulSound, volume: 0.2f, loop: false, playOnAwake: false);
+	}
+
+	/// <summary>
+	/// Создание и настройка компонента AudioSource
+	/// </summary>
+	void setupAudioSource(ref AudioSource audioSource, AudioClip audioClip, float volume, bool loop = true, bool playOnAwake = true)
+	{
+		if (volume < 0) volume = 0;
+		if (volume > 1.0f) volume = 1.0f;
+
+		audioSource = gameObject.AddComponent<AudioSource>();
+		audioSource.volume = volume;
+		audioSource.loop = loop;
+		audioSource.playOnAwake = playOnAwake;
+		audioSource.clip = audioClip;
 	}
 
 	void Start()
 	{
-		switchSound();
+		switchMusic();
 	}
 
 	/// <summary>
@@ -33,13 +68,13 @@ public class AudioManager : MonoBehaviour
 		Debug.Log($"Звук: {newAudioStatement}");
 		audioStatement = newAudioStatement;
 
-		if (mainThemeSource != null) switchSound();
+		if (mainThemeSource != null) switchMusic();
 	}
 
 	/// <summary>
 	/// Переключение mainThemeSource
 	/// </summary>
-	static void switchSound()
+	static void switchMusic()
 	{
 		if(audioStatement)
 		{
@@ -48,5 +83,22 @@ public class AudioManager : MonoBehaviour
 		}
 
 		mainThemeSource.Stop();
+	}
+
+
+	/// <summary>
+	/// Воспроизвести звук при проигрыше
+	/// </summary>
+	public static void playGameOverSound()
+	{
+		if (gameOverSource != null && audioStatement) gameOverSource.Play();
+	}
+
+	/// <summary>
+	/// Воспроизвести звук при столкновении с объектом Soul
+	/// </summary>
+	public static void playCollectingSoulSound()
+	{
+		if (collectingSoulSource != null && audioStatement) collectingSoulSource.Play();
 	}
 }

@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244682396}
+      - m_Target: {fileID: 0}
         m_MethodName: gameOverAdBoostFunc
         m_Mode: 1
         m_Arguments:
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 80747245}
   - component: {fileID: 80747244}
   m_Layer: 5
-  m_Name: runtimeSoulsCounterImage
+  m_Name: Image_CollectedSoulsValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,20 +748,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 244682395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7463f7b23f3cd0647ace22f6d520648c, type: 3}
+  m_Script: {fileID: 11500000, guid: 275966cd778c7d74987ba9c13ac39621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeCurrentScoreText: {fileID: 754104248}
-  runtimeSoulsCounterText: {fileID: 1801253002}
-  bestScoreText: {fileID: 1706338571}
-  pauseButton: {fileID: 1552902336}
-  continueOrRestartButton: {fileID: 1433113918}
-  mainMenuButton: {fileID: 946165741}
-  gameOverBoostButton: {fileID: 442129710}
-  gameOverAdBoostButton: {fileID: 20016905}
-  soundToggle: {fileID: 2034164994}
-  pausePanel: {fileID: 1719935202}
-  tutorialImage: {fileID: 449980528}
+  currentScoreValue: {fileID: 754104248}
+  collectedSoulsValue: {fileID: 1801253002}
 --- !u!114 &244682397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +919,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244682396}
+      - m_Target: {fileID: 0}
         m_MethodName: gameOverBoostFunc
         m_Mode: 1
         m_Arguments:
@@ -986,13 +977,14 @@ GameObject:
   - component: {fileID: 449980531}
   - component: {fileID: 449980530}
   - component: {fileID: 449980529}
+  - component: {fileID: 449980532}
   m_Layer: 5
-  m_Name: TutorialPanel
+  m_Name: Image_Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &449980529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1044,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &449980532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449980528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b9b5c44449ba544a99df6e9d1334f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysShowTutorialPanel: 0
 --- !u!1 &652130473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1272,7 @@ GameObject:
   - component: {fileID: 754104249}
   - component: {fileID: 754104248}
   m_Layer: 5
-  m_Name: runtimeCurrentScoreText
+  m_Name: Text_CurrentScoreValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,7 +1532,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244682396}
+      - m_Target: {fileID: 0}
         m_MethodName: mainMenuFunc
         m_Mode: 1
         m_Arguments:
@@ -2043,7 +2048,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244682396}
+      - m_Target: {fileID: 0}
         m_MethodName: continueOrRestartFunc
         m_Mode: 1
         m_Arguments:
@@ -2228,7 +2233,7 @@ GameObject:
   - component: {fileID: 1552902337}
   - component: {fileID: 1552902336}
   m_Layer: 5
-  m_Name: pauseButton
+  m_Name: Button_Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,7 +2282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244682396}
+      - m_Target: {fileID: 0}
         m_MethodName: pauseFunc
         m_Mode: 1
         m_Arguments:
@@ -2658,7 +2663,7 @@ GameObject:
   - component: {fileID: 1801253003}
   - component: {fileID: 1801253002}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_CollectedSoulsValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
