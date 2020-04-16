@@ -3,7 +3,7 @@
 /// <summary>
 /// Содержит игровые данные
 /// </summary>
-public static class GameManager
+public static class ValuesController
 {
 	/// <summary>
 	/// Очки лучшего счета

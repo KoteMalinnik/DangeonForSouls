@@ -1,20 +1,27 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Контроль панели обучения
+/// </summary>
 public class TutorialGUI : MonoBehaviour
 {
-	void Awake()
-	{
-		Statements.setPauseStatement(true); //Состояние паузы вкл.
-		gameObject.SetActive(true); //Показать панель обучения
-
-		Debug.Log("Панель обучения вкл.");
-	}
+	[SerializeField]
+	bool alwaysShowTutorialPanel = false;
 
 	void Start()
 	{
-		StartCoroutine(showTutorialPanel());
+		#if UNITY_EDITOR
+		if(alwaysShowTutorialPanel)
+		{
+			StartCoroutine(showTutorialPanel());
+			return;
+		}
+		#endif
+
+		//Обучение будет показываться один раз в начале игры
+		//Счет будет нулевым, если игру запускают первый раз
+		if (ValuesController.bestScoreValue < 1) StartCoroutine(showTutorialPanel());
 	}
 
 	/// <summary>
@@ -22,6 +29,11 @@ public class TutorialGUI : MonoBehaviour
 	/// </summary>
 	IEnumerator showTutorialPanel()
 	{
+		Statements.setPause(true); //Состояние паузы вкл.
+		gameObject.SetActive(true); //Показать панель обучения
+
+		Debug.Log("Панель обучения вкл.");
+
 		#if UNITY_EDITOR
 		//Пока не будет произведено нажатие правой кнопкой мыши 
 		yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
@@ -33,7 +45,7 @@ public class TutorialGUI : MonoBehaviour
 		Debug.Log("Панель обучения выкл.");
 
 		gameObject.SetActive(false); //Отключить панель обучения
-		Statements.setPauseStatement(false); //Состояние паузы выкл.
+		Statements.setPause(false); //Состояние паузы выкл.
 
 		yield return null;
 	}

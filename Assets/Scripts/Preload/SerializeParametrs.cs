@@ -27,13 +27,13 @@ public class SerializeParametrs : MonoBehaviour
 		Debug.Log("Загрузка параметров из PlayerPrefs");
 
 		var newBestScoreValue = loadParametr(key_bestScoreValue, 0);
-		GameManager.setBestScoreValue(newBestScoreValue);
+		ValuesController.setBestScoreValue(newBestScoreValue);
 
 		var newCollectedSoulsValue = loadParametr(key_collectedSoulsValue, 0);
-		GameManager.setСolectedSoulsValue(newCollectedSoulsValue);
+		ValuesController.setСolectedSoulsValue(newCollectedSoulsValue);
 
 		var newRecoveryCostValue = loadParametr(key_recoveryCostValue, 100);
-		GameManager.setRecoveryCostValue(newRecoveryCostValue);
+		ValuesController.setRecoveryCostValue(newRecoveryCostValue);
 
 		var newAudioStatement = loadParametr(key_audioStatement, true);
 		AudioManager.setAudioStatement(newAudioStatement);
@@ -90,9 +90,9 @@ public class SerializeParametrs : MonoBehaviour
 		Debug.Log("Сохранение параметров в PlayerPrefs");
 
 		saveParametr(key_audioStatement, AudioManager.audioStatement);
-		saveParametr(key_bestScoreValue, GameManager.bestScoreValue);
-		saveParametr(key_collectedSoulsValue, GameManager.colectedSoulsValue);
-		saveParametr(key_recoveryCostValue, GameManager.recoveryCostValue);
+		saveParametr(key_bestScoreValue, ValuesController.bestScoreValue);
+		saveParametr(key_collectedSoulsValue, ValuesController.colectedSoulsValue);
+		saveParametr(key_recoveryCostValue, ValuesController.recoveryCostValue);
 	}
 
 	void OnApplicationQuit()

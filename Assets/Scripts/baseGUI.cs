@@ -5,7 +5,7 @@ public abstract class baseGUI : MonoBehaviour
 {
    protected void presetGUI()
 	{
-		bestScoreValue.text = $"{GameManager.bestScoreValue} m";
+		bestScoreValue.text = $"{ValuesController.bestScoreValue} m";
 		soundStatement.isOn = AudioManager.audioStatement;
 	}
 

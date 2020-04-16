@@ -28,11 +28,55 @@ public class PauseMenuGUI : baseGUI
 	///// </summary>
 	//GameObject pauseGUIpanel = null;
 
+	[SerializeField]
+	/// <summary>
+	/// Кнопка паузы
+	/// </summary>
+	Button pauseButton = null;
 
 	//Button gameOverBoostButton; // бонус-продолжение за души
 	//Button gameOverAdBoostButton; //бонус-продолжение за просмотр рекламы
 
 
+	//Функция для кнопки паузы
+	//public void pauseFunc()
+	//{
+	//	pauseStatement = true; // выставляем паузу
+	//	pauseButton.interactable = false; //отключаем взаимодействие кнопки паузы
+
+	//	pausePanel.SetActive(true); //показываем панель паузы
+	//	pausePanel.GetComponent<Animator>().Play("simplePanelAnimation"); //анимируем панель паузы
+	//																	  //выставление текста бонусов
+	//	gameOverBoostButton.GetComponentInChildren<Text>().text = $"Continue\n{gm.gameOverBoostCost} souls";
+	//	gameOverAdBoostButton.GetComponentInChildren<Text>().text = "Continue (after watching ads)";
+
+	//	//если текущий счет стал лучше предыдущего, то перезаписываем лучший счет
+	//	if (gm.pc.score > gm.bestScore) gm.bestScore = (int)gm.pc.score;
+	//	gm.saveInt();
+
+	//	//выставление чекмарка звука
+	//	if (gm.sound) soundToggle.isOn = true;
+	//	else soundToggle.isOn = false;
+
+	//	//показываем лучший счет
+	//	bestScoreText.text = gm.bestScore + " m";
+
+	//	//отключаем взаимодействие кнопок бонусов
+	//	gameOverBoostButton.interactable = false;
+	//	gameOverAdBoostButton.interactable = false;
+
+	//	//если игрок проиграл
+	//	if (gm.pc.gameOver)
+	//	{
+	//		//бонус-продолжение за души будет включен, если есть нужное количество душ
+	//		gameOverBoostButton.interactable = gm.gameOverBoostCost <= gm.colectedSouls;
+	//		//бонус-продолжение за просмотр рекламы будет включен, если реклама готова
+	//		//gameOverAdBoostButton.interactable = Advertisement.IsReady("rewardedVideo");
+
+	//		//изменение текста кнопки продолжить-рестар
+	//		continueOrRestartButton.GetComponentInChildren<Text>().text = "Restart";
+	//	}
+	//}
 
 	////для кнопки главного меню
 	//public void mainMenuFunc()

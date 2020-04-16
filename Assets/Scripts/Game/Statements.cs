@@ -1,38 +1,27 @@
 ﻿/// <summary>
-/// Контроль состояний
+/// Контроль состояний игрового процесса
 /// </summary>
 public static class Statements
 {
     /// <summary>
 	/// Состояние паузы игрового процесса
 	/// </summary>
-	static bool pauseStatement { get; set; } = true;
+	public static bool pause { get; private set; } = true;
 
 	/// <summary>
-	/// Возвращает состояние паузы
+	/// Устанавливает состояние паузы как newPause
 	/// </summary>
-	public static bool getPauseStatement() { return pauseStatement;}
+	public static void setPause(bool newPause) { pause = newPause;}
+
 
 	/// <summary>
-	/// Устанавливает состояние паузы как newPauseStatement
+	/// Состояние проигрыша. True, если Player проиграл
 	/// </summary>
-	/// <returns><c>true</c>, if pause statement was set, <c>false</c> otherwise.</returns>
-	public static void setPauseStatement(bool newPauseStatement) { pauseStatement = newPauseStatement;}
-
+	public static bool gameOver { get; private set; } = false;
 
 	/// <summary>
-	/// Состояние паузы игрового процесса
-	/// </summary>
-	static bool pauseStatement { get; set; } = true;
-
-	/// <summary>
-	/// Возвращает состояние паузы
-	/// </summary>
-	public static bool getPauseStatement() { return pauseStatement; }
-
-	/// <summary>
-	/// Устанавливает состояние паузы как newPauseStatement
+	/// Устанавливает состояние проигрыша как newGameOver
 	/// </summary>
 	/// <returns><c>true</c>, if pause statement was set, <c>false</c> otherwise.</returns>
-	public static void setPauseStatement(bool newPauseStatement) { pauseStatement = newPauseStatement; }
+	public static void setGameOver(bool newGameOver) { gameOver = newGameOver; }
 }
