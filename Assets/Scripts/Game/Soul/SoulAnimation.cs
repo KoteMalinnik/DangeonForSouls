@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-public class soulObjectAnimation : MonoBehaviour
+public class SoulAnimation : MonoBehaviour
 {
 	/// <summary>
 	/// Свет, прикрепленный к дочернему объекту
 	/// </summary>
 	Light halo;
-	soulObjectVisibilityListener visibilityListener;
+	SoulVisibilityListener visibilityListener;
 
 	void Awake()
 	{
 		halo = GetComponentInChildren<Light>();
-		visibilityListener = GetComponent<soulObjectVisibilityListener>();
+		visibilityListener = GetComponent<SoulVisibilityListener>();
 	}
 
 	[SerializeField, Tooltip("Скорость изменения размера ореола (halo)")]

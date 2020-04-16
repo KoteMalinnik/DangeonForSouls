@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class ObjectsGenerator : MonoBehaviour
+//!!! Рефакторить
+
+/// <summary>
+/// Генератор объектов soulObject
+/// </summary>
+public class SoulsGenerator : MonoBehaviour
 {
-	public GameObject groundPrefab;
-	public GameObject holePrefab;
 	public GameObject soulPrefab;
 
 	public GameObject[,] objectPull = new GameObject[10,2];
@@ -18,36 +21,36 @@ public class ObjectsGenerator : MonoBehaviour
 	Vector2 lastHigherObj { get; set; } = Vector2.zero;
 	Vector2 lastLowerObj { get; set; } = Vector2.zero;
 
-	public static ObjectsGenerator instance;
-	void Awake()
-	{
-		if (instance == null) instance = this;
-		else if (instance = this) Destroy(this);
+	//public static ObjectsGenerator instance;
+	//void Awake()
+	//{
+	//	if (instance == null) instance = this;
+	//	else if (instance = this) Destroy(this);
 
-		//GameManager.instance.og = instance;
+	//	//GameManager.instance.og = instance;
 
-		if (groundPrefab == null) throw new System.Exception("Ground Prefab is not set!");
-		if (holePrefab == null) throw new System.Exception("Hole Prefab is not set!");
-	}
+	//	if (groundPrefab == null) throw new System.Exception("Ground Prefab is not set!");
+	//	if (holePrefab == null) throw new System.Exception("Hole Prefab is not set!");
+	//}
 
-	void Start()
-	{
-		minObjectSize = 4;
-		maxObjectSize = 10;
+	//void Start()
+	//{
+	//	minObjectSize = 4;
+	//	maxObjectSize = 10;
 
-		for (int i = 0; i < objectPull.Length/2; i++)
-		{
-			GameObject obj = Instantiate(groundPrefab);
-			obj.transform.parent = transform;
-			objectPull[i,0] = obj;
+	//	for (int i = 0; i < objectPull.Length/2; i++)
+	//	{
+	//		GameObject obj = Instantiate(groundPrefab);
+	//		obj.transform.parent = transform;
+	//		objectPull[i,0] = obj;
 
-			obj = Instantiate(holePrefab);
-			obj.transform.parent = transform;
-			objectPull[i, 1] = obj;
-		}
+	//		obj = Instantiate(holePrefab);
+	//		obj.transform.parent = transform;
+	//		objectPull[i, 1] = obj;
+	//	}
 
-		for (int i = 0; i < objectPull.Length / 2; i++) setObjectPositionAndScale(objectPull);
-	}
+	//	for (int i = 0; i < objectPull.Length / 2; i++) setObjectPositionAndScale(objectPull);
+	//}
 
 	public void setObjectPositionAndScale(GameObject[,] pull)
 	{

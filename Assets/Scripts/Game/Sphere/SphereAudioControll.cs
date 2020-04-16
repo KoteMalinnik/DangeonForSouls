@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//!!! Рефакторить
+
 [RequireComponent(typeof(AudioSource))]
 public class SphereAudioControll : MonoBehaviour
 {

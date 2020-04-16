@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8907493186784090569}
   - component: {fileID: 8907493186784090570}
   m_Layer: 0
-  m_Name: halo
+  m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,9 +106,9 @@ GameObject:
   - component: {fileID: 8907493188454803649}
   - component: {fileID: 7257399256239475857}
   - component: {fileID: -807630090232297665}
-  m_Layer: 0
-  m_Name: soulObject
-  m_TagString: soul
+  m_Layer: 8
+  m_Name: Soul
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d5fc44a744054148873d358175d7392, type: 2}
+  - {fileID: 2100000, guid: 4cbd24aa71f63244a9c13f3eb96c2ef6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -197,11 +197,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8907493188454803648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380e661f892436f42b99dbd222f7d15b, type: 3}
+  m_Script: {fileID: 11500000, guid: afffc902fc07b2342a8e656f97efcaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  haloRangeAnimationSpeed: 0.1
-  moveAnimationSpeed: 0.1
 --- !u!114 &-807630090232297665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +209,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8907493188454803648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301cd617153468b4eaaf8d2e2604772c, type: 3}
+  m_Script: {fileID: 11500000, guid: 60241e8655dd04248a93fc71a3691ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  haloRangeAnimationSpeed: 0.1
+  moveAnimationSpeed: 0.1

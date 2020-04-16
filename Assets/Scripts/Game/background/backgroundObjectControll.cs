@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//!!! Рефакторить
 public class backgroundObjectControll : MonoBehaviour
 {
 	backgroundControll bc;

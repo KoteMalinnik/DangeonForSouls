@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 //using UnityEngine.Advertisements;
 
-public class pauseGUI_Manager : MonoBehaviour
+//!!! Рефакторить
+public class PauseMenuGUI : MonoBehaviour
 {
 	//GameManager gm;
 

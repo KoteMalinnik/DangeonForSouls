@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+//!!! Рефакторить
+
 public class PlayerControll : MonoBehaviour
 {
 //	GameManager gm;

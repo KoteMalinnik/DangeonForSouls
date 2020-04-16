@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class ObjectControll : MonoBehaviour
+//!!! Рефакторить
+public class PlatformDestroyer : MonoBehaviour
 {
  //   void OnBecameInvisible()
 	//{

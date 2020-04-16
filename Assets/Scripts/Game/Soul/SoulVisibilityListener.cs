@@ -3,7 +3,7 @@
 /// <summary>
 /// Переключает состояние видимости soulObject
 /// </summary>
-public class soulObjectVisibilityListener : MonoBehaviour
+public class SoulVisibilityListener : MonoBehaviour
 {
 	/// <summary>
 	/// Состояние видимости объекта

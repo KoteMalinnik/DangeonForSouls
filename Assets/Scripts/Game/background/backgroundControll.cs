@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//!!! Рефакторить
 public class backgroundControll : MonoBehaviour
 {
 	//два объекта фона в очереди
