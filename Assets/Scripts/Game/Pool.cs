@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Пул объектов типа GameObject
+/// </summary>
 public class Pool
 {
 	/// <summary>
@@ -25,20 +28,20 @@ public class Pool
 	/// <summary>
 	/// Пул объектов
 	/// </summary>
-	List<PoolObject> pool = null;
+	List<GameObject> pool = null;
 
 	/// <summary>
 	/// Инициализация пула
 	/// </summary>
 	public void initializePool()
 	{
-		pool = new List<PoolObject>();
+		pool = new List<GameObject>();
 	}
 
 	/// <summary>
 	/// Добавляет объект в пул
 	/// </summary>
-	public void addObject(PoolObject newPoolObject)
+	public void addObject(GameObject newPoolObject)
 	{
 		if(!pool.Contains(newPoolObject))
 		{
@@ -60,7 +63,7 @@ public class Pool
 	/// <summary>
 	/// Удаляет объект из пула
 	/// </summary>
-	public void removeObject(PoolObject poolObject)
+	public void removeObject(GameObject poolObject)
 	{
 		if (pool.Contains(poolObject))
 		{
@@ -77,7 +80,7 @@ public class Pool
 	/// Возвращает объект из пула и удаляет его. Возвращает null, если пул пуст.
 	/// </summary>
 	/// <returns>The first object.</returns>
-	public PoolObject getObject()
+	public GameObject getObject()
 	{
 		if(pool.Count==0)
 		{
