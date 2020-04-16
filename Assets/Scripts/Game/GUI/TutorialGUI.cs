@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class TutorialGUI : MonoBehaviour
 {
-    [Header("GUI Objects")]
-	public GameObject tutorialImage; // изображение с обучением
+	void Awake()
+	{
+		Statements.setPauseStatement(true); //Состояние паузы вкл.
+		gameObject.SetActive(true); //Показать панель обучения
 
-	////Корутина обучения
-	//IEnumerator tutorial()
-	//{
-	//	Debug.Log("Tutorial started");
-	//	pauseStatement = true; //выставляем паузу
-	//	pauseButton.interactable = false; //отключаем взаимодействие кнопки паузы
-	//	tutorialImage.SetActive(true); //показываем изображение с обучением
+		Debug.Log("Панель обучения вкл.");
+	}
 
-	//	//будем находится здесь до тех пор, пока не будет произведено нажатие правой кнопкой мыши или тап по экрану
-	//	yield return new WaitUntil(() => Input.touchCount > 0 || Input.GetMouseButtonDown(1));
+	void Start()
+	{
+		StartCoroutine(showTutorialPanel());
+	}
 
-	//	pauseStatement = false; //отключаем паузу
-	//	pauseButton.interactable = true; //включаем взаимодействие кнопки
-	//	tutorialImage.SetActive(false); //отключаем изображение с обучением
+	/// <summary>
+	/// Отключение панели обучения
+	/// </summary>
+	IEnumerator showTutorialPanel()
+	{
+		#if UNITY_EDITOR
+		//Пока не будет произведено нажатие правой кнопкой мыши 
+		yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+		#elif PLATFORM_ANDROID
+		//Пока не будет произведено нажатие на экран
+		yield return new WaitUntil(() => Input.touchCount > 0);
+		#endif
 
-	//	Debug.Log("End of tutorial");
-	//	yield return null;
-	//}
+		Debug.Log("Панель обучения выкл.");
+
+		gameObject.SetActive(false); //Отключить панель обучения
+		Statements.setPauseStatement(false); //Состояние паузы выкл.
+
+		yield return null;
+	}
 }
