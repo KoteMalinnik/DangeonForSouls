@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Контролирь состояния паузы
+/// Контроль состояния паузы
 /// </summary>
 public static class PauseListener
 {

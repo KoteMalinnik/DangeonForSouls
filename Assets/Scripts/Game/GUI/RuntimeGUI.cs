@@ -13,32 +13,44 @@ public class RuntimeGUI : MonoBehaviour
 		pauseButton.interactable = true;
 
 		//выставление начального текста на канвасе
-		runtimeCurrentScoreText.text = "0 m";
-		runtimeSoulsCounterText.text = gm.colectedSouls.ToString();
+		currentScoreValue.text = "0 m";
+		collectedSoulsValue.text = gm.colectedSouls.ToString();
 
 		//Ставим на паузу, если нужно обучение. Обучение будет показываться один раз в начале игры.
 		//Логично предположить, что счет будет нулевым, если не играли до этого
 		if (gm.bestScore < 1) StartCoroutine(tutorial());
 	}
 
-	[Header("GUI Text")]
-	public Text runtimeCurrentScoreText; //текущий счет
-	public Text runtimeSoulsCounterText; //количество собранных душ
 
-	[Header("GUI Buttons")]
-	public Button pauseButton; // пауза
+	[SerializeField]
+	/// <summary>
+	/// Значение текущего счета
+	/// </summary>
+	Text currentScoreValue = null;
+
+	[SerializeField]
+	/// <summary>
+	/// Количество собранных душ
+	/// </summary>
+	Text collectedSoulsValue = null;
+
+	[SerializeField]
+	/// <summary>
+	/// Кнопка паузы
+	/// </summary>
+	Button pauseButton;
 
 
 	void Update()
 	{
 		//Если статус не "пауза" и не "gameOver", то выводим счет
-		if (!pauseStatement && !gm.pc.gameOver) runtimeCurrentScoreText.text = (int)gm.pc.score + " m";
+		if (!pauseStatement && !gm.pc.gameOver) currentScoreValue.text = (int)gm.pc.score + " m";
 	}
 
 	//обновление счетчика душ по запросу
 	public void updateSoulCounter(int count)
 	{
-		runtimeSoulsCounterText.text = count.ToString();
+		collectedSoulsValue.text = count.ToString();
 	}
 
 
