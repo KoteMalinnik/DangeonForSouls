@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Генератор объектов для пула
+/// Генератор объектов для пула. Чтобы создать пул объектов, надо создать объект в иерархии и прикрепить к нему компонент Generator
 /// </summary>
 [RequireComponent(typeof(Pool))]
 public class Generator : MonoBehaviour
