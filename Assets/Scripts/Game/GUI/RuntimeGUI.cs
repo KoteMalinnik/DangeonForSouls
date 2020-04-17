@@ -8,8 +8,8 @@ public class RuntimeGUI : MonoBehaviour
 	/// <summary>
 	/// Значение текущего счета
 	/// </summary>
-	Text _currentScoreValue = null;
-	static Text currentScoreValue = null;
+	Text _scoreValue = null;
+	static Text scoreValue = null;
 
 	[SerializeField]
 	/// <summary>
@@ -20,7 +20,7 @@ public class RuntimeGUI : MonoBehaviour
 
     void Awake()
 	{
-		currentScoreValue = _currentScoreValue;
+		scoreValue = _scoreValue;
 		collectedSoulsValue = _collectedSoulsValue;
 
 		//Обновление начальных значений при запуске сцены
@@ -33,7 +33,7 @@ public class RuntimeGUI : MonoBehaviour
 	/// </summary>
 	public static void updateCollectedSoulsValue(int newCollectedSoulsValue)
 	{
-		collectedSoulsValue.text = newCollectedSoulsValue.ToString();
+		if(collectedSoulsValue != null) collectedSoulsValue.text = newCollectedSoulsValue.ToString();
 	}
 
 	/// <summary>
@@ -41,6 +41,12 @@ public class RuntimeGUI : MonoBehaviour
 	/// </summary>
 	public static void updateCurrentScoreValue(int newCurrentScoreValue)
 	{
-		currentScoreValue.text = $"{newCurrentScoreValue} m";
+		if (scoreValue != null) scoreValue.text = $"{newCurrentScoreValue} m";
+	}
+
+	void OnDestroy()
+	{
+		collectedSoulsValue = null;
+		scoreValue = null;
 	}
 }
