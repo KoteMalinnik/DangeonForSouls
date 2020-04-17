@@ -28,28 +28,29 @@ public class Pool
 	/// <summary>
 	/// Пул объектов
 	/// </summary>
-	List<GameObject> poolList = null;
+	List<PoolObject> list = null;
 
 	public int getPoolSize()
 	{
-		return poolList.Count;
+		return list.Count;
 	}
 
 	/// <summary>
 	/// Инициализация пула
 	/// </summary>
-	public void initializePool(int maxPoolSize)
+	public Pool(int maxPoolSize)
 	{
 		changeMaxSize(maxPoolSize);
-		poolList = new List<GameObject>(maxSize); 
+		list = new List<PoolObject>(maxSize);
+		Debug.Log("Инициализирован пул с максимальным количеством объектов: " + maxSize);
 	}
 
 	/// <summary>
 	/// Добавляет объект в пул
 	/// </summary>
-	public void addObject(GameObject newPoolObject)
+	public void addObject(PoolObject newPoolObject)
 	{
-		if(!poolList.Contains(newPoolObject))
+		if(!list.Contains(newPoolObject))
 		{
 			if(getPoolSize() >= maxSize)
 			{
@@ -57,35 +58,36 @@ public class Pool
 				return;
 			}
 
-			poolList.Add(newPoolObject);
+			list.Add(newPoolObject);
+			newPoolObject.gameObject.SetActive(false);
 
-			Debug.Log($"<color=green>Объект (ID {newPoolObject}) добавлен в пул.</color>");
+			Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
 			return;
 		}
 
-		Debug.LogError($"<color=red>Пул уже содержит объект (ID {newPoolObject})</color>");
+		Debug.LogError($"<color=red>Пул уже содержит объект (ID {newPoolObject.name})</color>");
 	}
 
 	/// <summary>
 	/// Удаляет объект из пула
 	/// </summary>
-	public void removeObject(GameObject poolObject)
+	public void removeObject(PoolObject poolObject)
 	{
-		if (poolList.Contains(poolObject))
+		if (list.Contains(poolObject))
 		{
-			poolList.Remove(poolObject);
+			list.Remove(poolObject);
 
-			Debug.Log($"<color=green>Объект (ID {poolObject}) удален из пула.</color>");
+			Debug.Log($"<color=green>Объект (ID {poolObject.name}) удален из пула.</color>");
 			return;
 		}
 
-		Debug.LogError($"<color=red>Пул не содержит объект (ID {poolObject})</color>");
+		Debug.LogError($"<color=red>Пул не содержит объект (ID {poolObject.name})</color>");
 	}
 
 	/// <summary>
 	/// Возвращает объект из пула и удаляет его. Возвращает null, если пул пуст.
 	/// </summary>
-	public GameObject getObject()
+	public PoolObject getObject()
 	{
 		if(getPoolSize() == 0)
 		{
@@ -93,10 +95,11 @@ public class Pool
 			return null;
 		}
 
-		var objectToReturn = poolList[0];
+		var objectToReturn = list[0];
 		removeObject(objectToReturn);
+		objectToReturn.gameObject.SetActive(true);
 
-		Debug.Log("<color=green>Объект выделен</color>");
+		Debug.Log($"<color=green>Объект (ID {objectToReturn.name}) выделен</color>");
 		return objectToReturn;
 	}
 }

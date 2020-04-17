@@ -1,61 +1,24 @@
-﻿using UnityEngine;
-
-//!!! Рефакторить
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
-/// Генератор платформ
+/// Перемещение объектов пула
 /// </summary>
-public class PlatformsGenerator : MonoBehaviour
+public class PoolObjectsReplacer : MonoBehaviour
 {
-	[SerializeField]
-	/// <summary>
-	/// The platform prefab.
-	/// </summary>
-	GameObject prefab_Platform = null;
+	public Pool pool { get; private set; } = null; 
 
-	[SerializeField]
-	/// <summary>
-	/// The minimum size of the platform.
-	/// </summary>
-	float minPlatformSize = 4;
-
-	[SerializeField]
-	/// <summary>
-	/// The maximum size of the platform.
-	/// </summary>
-	float maxPlatformSize = 10;
-
-
-	public GameObject[,] objectPull = new GameObject[10, 2];
-
-
-	//true, если объект размещается сверху
-	public bool placeUpper { get; set; } = true;
-
-	//x - позиция прошлого объекта. y - размер прошлого объекта
-	Vector2 lastHigherObj { get; set; } = Vector2.zero;
-	Vector2 lastLowerObj { get; set; } = Vector2.zero;
-
-	void Awake()
+	public PoolObjectsReplacer(int newPoolSize)
 	{
-		if (prefab_Platform == null) Debug.LogError("<color=red>Префаб платформы отсутствует!</color>");
+		pool = new Pool(newPoolSize);
 	}
 
-	//void Start()
-	//{
-	//	for (int i = 0; i < objectPull.Length/2; i++)
-	//	{
-	//		GameObject obj = Instantiate(groundPrefab);
-	//		obj.transform.parent = transform;
-	//		objectPull[i,0] = obj;
-
-	//		obj = Instantiate(holePrefab);
-	//		obj.transform.parent = transform;
-	//		objectPull[i, 1] = obj;
-	//	}
-
-	//	for (int i = 0; i < objectPull.Length / 2; i++) setObjectPositionAndScale(objectPull);
-	//}
+	public void returnObjectToThePool(PoolObject poolObject)
+	{
+		Debug.Log("Возвращение объекта в пул");
+		pool.addObject(poolObject);
+	}
 
 	//public void setObjectPositionAndScale(GameObject[,] pull)
 	//{
@@ -112,7 +75,7 @@ public class PlatformsGenerator : MonoBehaviour
 	//		pull[i - 1, 0] = pull[i, 0];
 	//		pull[i - 1, 1] = pull[i, 1];
 	//	}
-			
+
 	//	pull[pull.Length/2 - 1, 0] = temp1;
 	//	pull[pull.Length/2 - 1, 1] = temp2;
 	//}
