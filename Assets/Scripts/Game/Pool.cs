@@ -9,7 +9,7 @@ public class Pool
 	/// <summary>
 	/// Максимальный размер пула
 	/// </summary>
-	public int maxSize { get; private set; } = 20;
+	public int maxSize { get; private set; } = 0;
 
 	/// <summary>
 	/// Изменение максимального размера пула
@@ -28,14 +28,20 @@ public class Pool
 	/// <summary>
 	/// Пул объектов
 	/// </summary>
-	List<GameObject> pool = null;
+	List<GameObject> poolList = null;
+
+	public int getPoolSize()
+	{
+		return poolList.Count;
+	}
 
 	/// <summary>
 	/// Инициализация пула
 	/// </summary>
-	public void initializePool()
+	public void initializePool(int maxPoolSize)
 	{
-		pool = new List<GameObject>();
+		changeMaxSize(maxPoolSize);
+		poolList = new List<GameObject>(maxSize); 
 	}
 
 	/// <summary>
@@ -43,15 +49,15 @@ public class Pool
 	/// </summary>
 	public void addObject(GameObject newPoolObject)
 	{
-		if(!pool.Contains(newPoolObject))
+		if(!poolList.Contains(newPoolObject))
 		{
-			if(pool.Count >= maxSize)
+			if(getPoolSize() >= maxSize)
 			{
 				Debug.Log("<color=yellow>Пул объектов полон. нельзя добавить новый объект</color>");
 				return;
 			}
 
-			pool.Add(newPoolObject);
+			poolList.Add(newPoolObject);
 
 			Debug.Log($"<color=green>Объект (ID {newPoolObject}) добавлен в пул.</color>");
 			return;
@@ -65,9 +71,9 @@ public class Pool
 	/// </summary>
 	public void removeObject(GameObject poolObject)
 	{
-		if (pool.Contains(poolObject))
+		if (poolList.Contains(poolObject))
 		{
-			pool.Remove(poolObject);
+			poolList.Remove(poolObject);
 
 			Debug.Log($"<color=green>Объект (ID {poolObject}) удален из пула.</color>");
 			return;
@@ -79,16 +85,15 @@ public class Pool
 	/// <summary>
 	/// Возвращает объект из пула и удаляет его. Возвращает null, если пул пуст.
 	/// </summary>
-	/// <returns>The first object.</returns>
 	public GameObject getObject()
 	{
-		if(pool.Count==0)
+		if(getPoolSize() == 0)
 		{
 			Debug.LogError("<color=red>Пул объектов пуст</color>");
 			return null;
 		}
 
-		var objectToReturn = pool[0];
+		var objectToReturn = poolList[0];
 		removeObject(objectToReturn);
 
 		Debug.Log("<color=green>Объект выделен</color>");

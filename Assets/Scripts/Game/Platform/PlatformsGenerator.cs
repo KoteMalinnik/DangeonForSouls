@@ -17,13 +17,13 @@ public class PlatformsGenerator : MonoBehaviour
 	/// <summary>
 	/// The minimum size of the platform.
 	/// </summary>
-	int minPlatformSize = 4;
+	float minPlatformSize = 4;
 
 	[SerializeField]
 	/// <summary>
 	/// The maximum size of the platform.
 	/// </summary>
-	int maxPlatformSize = 10;
+	float maxPlatformSize = 10;
 
 
 	public GameObject[,] objectPull = new GameObject[10, 2];
