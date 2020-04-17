@@ -60,12 +60,14 @@ public class Pool
 
 			list.Add(newPoolObject);
 			newPoolObject.gameObject.SetActive(false);
+			newPoolObject.transform.position = Vector3.zero;
+			newPoolObject.transform.localScale = Vector3.one;
 
 			Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
 			return;
 		}
 
-		Debug.LogError($"<color=red>Пул уже содержит объект (ID {newPoolObject.name})</color>");
+		Debug.Log($"<color=red>Пул уже содержит объект (ID {newPoolObject.name})</color>");
 	}
 
 	/// <summary>
@@ -81,7 +83,7 @@ public class Pool
 			return;
 		}
 
-		Debug.LogError($"<color=red>Пул не содержит объект (ID {poolObject.name})</color>");
+		Debug.Log($"<color=red>Пул не содержит объект (ID {poolObject.name})</color>");
 	}
 
 	/// <summary>
@@ -91,7 +93,7 @@ public class Pool
 	{
 		if(getPoolSize() == 0)
 		{
-			Debug.LogError("<color=red>Пул объектов пуст</color>");
+			Debug.Log("<color=red>Пул объектов пуст</color>");
 			return null;
 		}
 

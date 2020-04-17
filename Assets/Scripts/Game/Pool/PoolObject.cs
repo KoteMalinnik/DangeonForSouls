@@ -26,4 +26,9 @@ public class PoolObject : MonoBehaviour
 			replacer.returnObjectToThePool(this);
 		}
 	}
+
+	void OnDestroy()
+	{
+		replacer.pool.removeObject(this);
+	}
 }

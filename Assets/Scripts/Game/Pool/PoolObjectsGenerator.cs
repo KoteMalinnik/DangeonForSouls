@@ -23,21 +23,24 @@ public class PoolObjectsGenerator : MonoBehaviour
 		poolObjectPrefab = Resources.Load<PoolObject>(path);
 	}
 
+	[SerializeField]
 	PoolObjectsReplacer replacer = null;
 
 	[SerializeField, Range(1, 50)]
-	int poolSize = 0;
+	int objectsCount = 0;
 
 	void Awake()
 	{
-		replacer = new PoolObjectsReplacer(poolSize);
+		replacer.createPool(objectsCount);
 	}
 
 	void Start()
 	{
 		loadPrefab();
 
+		Transform replacerTransform = replacer.transform;
 		Pool pool = replacer.pool;
+
 
 		int poolObjectsCount = pool.maxSize;
 		var newPoolObject = new PoolObject();
@@ -46,11 +49,13 @@ public class PoolObjectsGenerator : MonoBehaviour
 		{
 			newPoolObject = Instantiate(poolObjectPrefab, Vector3.zero, Quaternion.identity);
 
-			newPoolObject.transform.parent = transform;
+			newPoolObject.transform.parent = replacerTransform;
 			newPoolObject.name = i.ToString();
 			newPoolObject.setReplacer(replacer);
 
 			pool.addObject(newPoolObject);
 		}
+
+		Destroy(gameObject);
 	}
 }

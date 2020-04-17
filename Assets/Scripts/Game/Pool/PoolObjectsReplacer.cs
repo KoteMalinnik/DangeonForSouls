@@ -9,7 +9,7 @@ public class PoolObjectsReplacer : MonoBehaviour
 {
 	public Pool pool { get; private set; } = null; 
 
-	public PoolObjectsReplacer(int newPoolSize)
+	public void createPool(int newPoolSize)
 	{
 		pool = new Pool(newPoolSize);
 	}
