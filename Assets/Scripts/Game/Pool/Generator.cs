@@ -3,7 +3,7 @@
 /// <summary>
 /// Генератор объектов для пула
 /// </summary>
-public class PoolObjectsGenerator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
 	/// <summary>
 	/// The prefab.
@@ -18,29 +18,21 @@ public class PoolObjectsGenerator : MonoBehaviour
 
 	void loadPrefab()
 	{
-		Debug.Log($"<color=yellow>Загрузка префаба {prefabName} из ресурсов</color>");
 		var path = @"Prefabs\" + prefabName;
+		Debug.Log($"<color=yellow>Загрузка префаба {prefabName} по пути {path}</color>");
 		poolObjectPrefab = Resources.Load<PoolObject>(path);
 	}
 
-	[SerializeField]
-	PoolObjectsReplacer replacer = null;
-
 	[SerializeField, Range(1, 50)]
 	int objectsCount = 0;
-
-	void Awake()
-	{
-		replacer.createPool(objectsCount);
-	}
 
 	void Start()
 	{
 		loadPrefab();
 
-		Transform replacerTransform = replacer.transform;
-		Pool pool = replacer.pool;
-
+		Pool pool = transform.GetComponent<Pool>();
+		pool.initialize(objectsCount);
+		Transform poolTransform = pool.transform;
 
 		int poolObjectsCount = pool.maxSize;
 		var newPoolObject = new PoolObject();
@@ -49,13 +41,18 @@ public class PoolObjectsGenerator : MonoBehaviour
 		{
 			newPoolObject = Instantiate(poolObjectPrefab, Vector3.zero, Quaternion.identity);
 
-			newPoolObject.transform.parent = replacerTransform;
+			newPoolObject.transform.parent = poolTransform;
 			newPoolObject.name = i.ToString();
-			newPoolObject.setReplacer(replacer);
+			newPoolObject.setParentPool(pool);
 
 			pool.addObject(newPoolObject);
 		}
 
-		Destroy(gameObject);
+		Destroy(this);
+	}
+
+	void OnDestroy()
+	{
+		Debug.Log("Объект <color=white>Generator</color> уничтожен");
 	}
 }

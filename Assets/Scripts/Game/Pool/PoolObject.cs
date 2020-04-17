@@ -5,30 +5,30 @@
 /// </summary>
 public class PoolObject : MonoBehaviour
 {
-	PoolObjectsReplacer replacer = null;
+	Pool parentPool = null;
 
-	public void setReplacer(PoolObjectsReplacer newReplacer)
+	public void setParentPool(Pool newParentPool)
 	{
-		if (newReplacer.pool == null) Debug.LogError("Пул Replacer-а не инициализирован!");
-		replacer = newReplacer;
+		if (newParentPool == null) Debug.LogError("Пул Replacer-а не инициализирован!");
+		parentPool = newParentPool;
 	}
 
     void OnBecameInvisible()
 	{
 		#if UNITY_EDITOR
-		replacer.returnObjectToThePool(this);
+		parentPool.addObject(this);
 		#endif
 
 		//Если игра не находится в состоянии Конеца Игры
 		//Если игра не находится в состоянии Пауза
 		if (!Statements.gameOver && !Statements.pause)
 		{
-			replacer.returnObjectToThePool(this);
+			parentPool.addObject(this);
 		}
 	}
 
 	void OnDestroy()
 	{
-		replacer.pool.removeObject(this);
+		parentPool.removeObject(this);
 	}
 }

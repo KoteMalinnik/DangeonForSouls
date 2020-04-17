@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Перемещение объектов пула
+/// Перемещение объектов в пространстве
 /// </summary>
-public class PoolObjectsReplacer : MonoBehaviour
+public static class Replacer// : MonoBehaviour
 {
-	public Pool pool { get; private set; } = null; 
-
-	public void createPool(int newPoolSize)
+	public static void replaceObject(PoolObject objectToReplace)
 	{
-		pool = new Pool(newPoolSize);
-	}
-
-	public void returnObjectToThePool(PoolObject poolObject)
-	{
-		Debug.Log("Возвращение объекта в пул");
-		pool.addObject(poolObject);
+		Debug.Log($"Перемещение объекта (ID = {objectToReplace.name})");
 	}
 
 	//public void setObjectPositionAndScale(GameObject[,] pull)

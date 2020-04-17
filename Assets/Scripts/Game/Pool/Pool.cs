@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Пул объектов типа GameObject
 /// </summary>
-public class Pool
+public class Pool : MonoBehaviour
 {
 	/// <summary>
 	/// Максимальный размер пула
@@ -30,7 +30,7 @@ public class Pool
 	/// </summary>
 	List<PoolObject> list = null;
 
-	public int getPoolSize()
+	public int getCurrentSize()
 	{
 		return list.Count;
 	}
@@ -38,9 +38,9 @@ public class Pool
 	/// <summary>
 	/// Инициализация пула
 	/// </summary>
-	public Pool(int maxPoolSize)
+	public void initialize(int newMaxSize)
 	{
-		changeMaxSize(maxPoolSize);
+		changeMaxSize(newMaxSize);
 		list = new List<PoolObject>(maxSize);
 		Debug.Log("Инициализирован пул с максимальным количеством объектов: " + maxSize);
 	}
@@ -52,7 +52,7 @@ public class Pool
 	{
 		if(!list.Contains(newPoolObject))
 		{
-			if(getPoolSize() >= maxSize)
+			if(getCurrentSize() >= maxSize)
 			{
 				Debug.Log("<color=yellow>Пул объектов полон. нельзя добавить новый объект</color>");
 				return;
@@ -91,7 +91,7 @@ public class Pool
 	/// </summary>
 	public PoolObject getObject()
 	{
-		if(getPoolSize() == 0)
+		if(getCurrentSize() == 0)
 		{
 			Debug.Log("<color=red>Пул объектов пуст</color>");
 			return null;
