@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuGUI : baseGUI
 {
-	void Start()
+	void Awake()
 	{
 		presetGUI();
 	}

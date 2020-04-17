@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 20016906}
   - component: {fileID: 20016905}
   m_Layer: 5
-  m_Name: gameOverAdBoostButton
+  m_Name: Button_AdsRecovery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,18 +202,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 20016906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: gameOverAdBoostFunc
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &20016906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +313,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20187388}
   m_CullTransparentMesh: 0
+--- !u!1 &60460759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60460760}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &60460760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60460759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1423019493}
+  - {fileID: 389069530}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80747242
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +600,7 @@ GameObject:
   - component: {fileID: 179679144}
   - component: {fileID: 179679143}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +658,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Continue
 
-    (after wathing ad)'
+    (after wathing ads)'
 --- !u!222 &179679144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -732,13 +753,14 @@ GameObject:
   - component: {fileID: 244682398}
   - component: {fileID: 244682397}
   - component: {fileID: 244682396}
+  - component: {fileID: 244682401}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &244682396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,8 +773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275966cd778c7d74987ba9c13ac39621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScoreValue: {fileID: 754104248}
-  collectedSoulsValue: {fileID: 1801253002}
+  _currentScoreValue: {fileID: 754104248}
+  _collectedSoulsValue: {fileID: 1801253002}
 --- !u!114 &244682397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +859,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &244682401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244682395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052af95edb24a8048914434d65c695b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestScoreValue: {fileID: 1706338571}
+  soundStatement: {fileID: 2034164994}
+  pausePanel: {fileID: 1719935202}
+  pauseButton: {fileID: 1552902336}
+  soulRecovery: {fileID: 442129710}
+  continueOrRestart: {fileID: 884099636}
 --- !u!1 &389069528
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79cf16ac66f421d4394dd40841058fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab_Platform: {fileID: 0}
+  prefab_Platform: {fileID: 8174193001996307686, guid: 4ed1ba5cee50b544e8e43a49bf98fe8c,
+    type: 3}
   minPlatformSize: 4
   maxPlatformSize: 10
 --- !u!4 &389069530
@@ -876,12 +917,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389069528}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 60460760}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &442129708
 GameObject:
@@ -896,7 +937,7 @@ GameObject:
   - component: {fileID: 442129711}
   - component: {fileID: 442129710}
   m_Layer: 5
-  m_Name: gameOverBoostButton
+  m_Name: Button_SoulRecovery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -965,8 +1006,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: gameOverBoostFunc
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __SoulRecovery
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1115,7 +1156,7 @@ GameObject:
   - component: {fileID: 667242470}
   - component: {fileID: 667242469}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1233,7 @@ GameObject:
   - component: {fileID: 676792646}
   - component: {fileID: 676792645}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1387,7 @@ GameObject:
   - component: {fileID: 884099637}
   - component: {fileID: 884099636}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1424,7 +1465,7 @@ GameObject:
   - component: {fileID: 946165739}
   - component: {fileID: 946165741}
   m_Layer: 5
-  m_Name: mainMenuButton
+  m_Name: Button_MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1529,8 +1570,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: mainMenuFunc
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1552,7 +1593,7 @@ GameObject:
   - component: {fileID: 1023920494}
   - component: {fileID: 1023920493}
   m_Layer: 5
-  m_Name: bestScoreImage
+  m_Name: Image_BestScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1793,7 +1834,7 @@ GameObject:
   - component: {fileID: 1296651271}
   - component: {fileID: 1296651270}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1858,6 +1899,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296651268}
   m_CullTransparentMesh: 0
+--- !u!1 &1423019492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423019493}
+  - component: {fileID: 1423019494}
+  m_Layer: 0
+  m_Name: AdvertismentController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423019493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423019492}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 60460760}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423019494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423019492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5485f5fd5e540419f93dddfc7e491c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowAds: 1
+  adsRecovery: {fileID: 20016905}
+  pauseMenuGUI: {fileID: 244682401}
 --- !u!1 &1433113914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1958,7 @@ GameObject:
   - component: {fileID: 1433113916}
   - component: {fileID: 1433113918}
   m_Layer: 5
-  m_Name: continueOrRestartButton
+  m_Name: Button_ContinueOrRestart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1976,8 +2063,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: continueOrRestartFunc
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2301,7 +2399,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552902337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1552902337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2496,7 +2605,7 @@ GameObject:
   - component: {fileID: 1706338570}
   - component: {fileID: 1706338571}
   m_Layer: 5
-  m_Name: bestScoreText
+  m_Name: Text_BestScoreValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2560,7 +2669,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 43567
+  m_Text: 999999
 --- !u!1 &1719935202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,7 +2688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1719935203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2737,50 +2846,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: 350, y: 0}
   m_Pivot: {x: 1, y: 0.5}
---- !u!1 &1848330985
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1848330987}
-  - component: {fileID: 1848330986}
-  m_Layer: 8
-  m_Name: SoulsGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1848330986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848330985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae59cd94c0a00d4db8a9308d0694c60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soulPrefab: {fileID: 0}
---- !u!4 &1848330987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848330985}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875352191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +3002,7 @@ GameObject:
   - component: {fileID: 2034164996}
   - component: {fileID: 2034164995}
   m_Layer: 5
-  m_Name: soundToggle
+  m_Name: Toggle_Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3010,8 +3075,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: soundFunc
+      - m_Target: {fileID: 244682401}
+        m_MethodName: __SwitchSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3070,7 +3135,7 @@ GameObject:
   - component: {fileID: 2145145670}
   - component: {fileID: 2145145669}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3126,7 +3191,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: boost
+  m_Text: Boost
 --- !u!222 &2145145670
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3217,7 +3282,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930500055246507001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce53375bf32dd554e9715fe33af5acff, type: 3}
   m_Name: 

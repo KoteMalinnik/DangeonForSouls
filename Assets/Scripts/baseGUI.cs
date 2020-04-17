@@ -3,7 +3,10 @@ using UnityEngine.UI;
 
 public abstract class baseGUI : MonoBehaviour
 {
-   protected void presetGUI()
+	/// <summary>
+	/// Предустановка bestScoreValue.text и soundStatement.isOn
+	/// </summary>
+	protected void presetGUI()
 	{
 		bestScoreValue.text = $"{ValuesController.bestScoreValue} m";
 		soundStatement.isOn = AudioManager.audioStatement;
@@ -21,6 +24,9 @@ public abstract class baseGUI : MonoBehaviour
 	/// </summary>
 	Toggle soundStatement = null;
 
+	/// <summary>
+	/// Переключить звук
+	/// </summary>
 	public void __SwitchSound()
 	{
 		Debug.Log("Переключение звука");

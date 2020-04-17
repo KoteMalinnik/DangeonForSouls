@@ -2,31 +2,16 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-//!!! Рефакторить
+/// <summary>
+/// Меню паузы
+/// </summary>
 public class PauseMenuGUI : baseGUI
 {
-	//void Awake()
-	//{
-	//	//Отключение панели паузы
-	//	pauseGUIpanel.SetActive(false);
-	//	//Включение взаимодействия кнопки паузы
-	//	pauseButton.interactable = true;
-
-	//	//выставление начального текста на канвасе
-	//	runtimeCurrentScoreText.text = "0 m";
-	//	runtimeSoulsCounterText.text = gm.colectedSouls.ToString();
-
-	//	//Ставим на паузу, если нужно обучение. Обучение будет показываться один раз в начале игры.
-	//	//Логично предположить, что счет будет нулевым, если не играли до этого
-	//	if (gm.bestScore < 1) StartCoroutine(tutorial());
-	//}
-
-
-	//[SerializeField]
-	///// <summary>
-	///// Панель паузы
-	///// </summary>
-	//GameObject pauseGUIpanel = null;
+	[SerializeField]
+	/// <summary>
+	/// Панель паузы
+	/// </summary>
+	GameObject pausePanel = null;
 
 	[SerializeField]
 	/// <summary>
@@ -34,107 +19,115 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	Button pauseButton = null;
 
-	//Button gameOverBoostButton; // бонус-продолжение за души
-	//Button gameOverAdBoostButton; //бонус-продолжение за просмотр рекламы
 
+	[SerializeField]
+	/// <summary>
+	/// Кнопка восстановления за определенное количество душ
+	/// </summary>
+	Button soulRecovery = null;
+	/// <summary>
+	/// Текст кнопки recoveryBoost
+	/// </summary>
+	Text soulRecoveryCost = null;
 
-	//Функция для кнопки паузы
-	//public void pauseFunc()
-	//{
-	//	pauseStatement = true; // выставляем паузу
-	//	pauseButton.interactable = false; //отключаем взаимодействие кнопки паузы
+	[SerializeField]
+	/// <summary>
+	/// Label кнопки continueOrRestart
+	/// </summary>
+	Text continueOrRestart = null;
+	const string _continue = "Continue";
+	const string _restart = "Restart";
 
-	//	pausePanel.SetActive(true); //показываем панель паузы
-	//	pausePanel.GetComponent<Animator>().Play("simplePanelAnimation"); //анимируем панель паузы
-	//																	  //выставление текста бонусов
-	//	gameOverBoostButton.GetComponentInChildren<Text>().text = $"Continue\n{gm.gameOverBoostCost} souls";
-	//	gameOverAdBoostButton.GetComponentInChildren<Text>().text = "Continue (after watching ads)";
+	/// <summary>
+	/// Аниматор панели паузы
+	/// </summary>
+	Animator pausePanelAnimator = null;
 
-	//	//если текущий счет стал лучше предыдущего, то перезаписываем лучший счет
-	//	if (gm.pc.score > gm.bestScore) gm.bestScore = (int)gm.pc.score;
-	//	gm.saveInt();
+	void Awake()
+	{
+		continueOrRestart.text = _continue;
 
-	//	//выставление чекмарка звука
-	//	if (gm.sound) soundToggle.isOn = true;
-	//	else soundToggle.isOn = false;
+		soulRecoveryCost = soulRecovery.GetComponentInChildren<Text>();
+		pausePanelAnimator = pausePanel.GetComponent<Animator>();
 
-	//	//показываем лучший счет
-	//	bestScoreText.text = gm.bestScore + " m";
+		pausePanel.SetActive(false); //Скрыть панели паузы
+		pauseButton.interactable = true; //Включение взаимодействия кнопки паузы
+	}
 
-	//	//отключаем взаимодействие кнопок бонусов
-	//	gameOverBoostButton.interactable = false;
-	//	gameOverAdBoostButton.interactable = false;
+	/// <summary>
+	/// Пауза игрового процесса
+	/// </summary>
+	public void __Pause()
+	{
+		Statements.setPause(true);
 
-	//	//если игрок проиграл
-	//	if (gm.pc.gameOver)
-	//	{
-	//		//бонус-продолжение за души будет включен, если есть нужное количество душ
-	//		gameOverBoostButton.interactable = gm.gameOverBoostCost <= gm.colectedSouls;
-	//		//бонус-продолжение за просмотр рекламы будет включен, если реклама готова
-	//		//gameOverAdBoostButton.interactable = Advertisement.IsReady("rewardedVideo");
+		soulRecovery.interactable = false; //Отключение взаимодействия кнопки восстановления за души
+		pauseButton.interactable = false; //Отключение взаимодействия кнопки паузы
 
-	//		//изменение текста кнопки продолжить-рестар
-	//		continueOrRestartButton.GetComponentInChildren<Text>().text = "Restart";
-	//	}
-	//}
+		pausePanel.SetActive(true); //Показать панель паузы
 
-	////для кнопки главного меню
-	//public void mainMenuFunc()
-	//{
-	//	Debug.Log("Loading scene - Main Menu");
-	//	SceneManager.LoadSceneAsync("MainMenu");
-	//}
+		pausePanelAnimator.Play("simplePanelAnimation"); //Запуск анимации панели паузы
 
-	// //для кнопки продолжить-рестарт
-	//public void continueOrRestartFunc()
-	//{
-	//	//Text кнопки "Restart". если игрок проиграл, то перезагрузка сцены
-	//	if(gm.pc.gameOver)
-	//	{
-	//		Debug.Log("Reloading current scene - Game");
-	//		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-	//	}
-	//	//Text кнопки "Continue". Снятие игры с паузы
-	//	else
-	//	{
-	//		//иначе 
-	//		pauseButton.interactable = true;
-	//		pauseGUIpanel.SetActive(false);
-	//		pauseStatement = false;
-	//	}
-	//}
+		soulRecoveryCost.text = $"Continue\n{ValuesController.recoveryCostValue} souls"; //Установка текста для кнопки восстановления
 
-	////для кнопки бонуса-продолжения за души
-	//public void gameOverBoostFunc()
-	//{
-	//	//вычитаем стоимость продолжения от накопленных душ
-	//	gm.colectedSouls -= gm.gameOverBoostCost;
-	//	updateSoulCounter(gm.colectedSouls); //обновляем счетчик
+		presetGUI(); //Установка bestScoreValue.text и soundStatement.isOn
 
-	//	gm.gameOverBoostCost += 100; //добавляем к стоимости бонуса-продолжения 100
+		if (Statements.gameOver)
+		{
+			//Восстановление за души активно, если есть нужное количество душ
+			soulRecovery.interactable = ValuesController.canRecovery();
 
-	//	gm.pc.StartCoroutine(gm.pc.gameOverBoost()); //запускаем возрождение
-	//	gameOverBoostButton.interactable = false; //отключаем взаимодействие кнопки бонуса-продолжения за души
-	//}
+			//Установка текста кнопки continueOrRestart
+			continueOrRestart.text = _restart; 
+		}
+	}
 
-	////для кнопки бонуса-продолжения за просмотр рекламы
-	//bool AdsWasWatched { get; set; } = false; //true, если кнопка была нажата, т.е. запущена реклама
-	//public void gameOverAdBoostFunc()
-	//{
-	//	//если реклама не была просмотрена
-	//	if(!AdsWasWatched)
-	//	{
-	//		Debug.Log("Ads Wasn't Watched");
-	//		//Advertisement.Show("rewardedVideo"); //включаем рекламу
-	//		AdsWasWatched = true; //выставляем переменную
-	//		gameOverAdBoostButton.GetComponentInChildren<Text>().text = "Continue"; //изменяем текст кнопки
-	//	}
-	//	else
-	//	{
-	//		//если реклама была просмотренна
-	//		Debug.Log("Ads Was Watched");
-	//		AdsWasWatched = false; //выставляем переменную
-	//		gm.pc.StartCoroutine(gm.pc.gameOverBoost()); //запускаем возрождение
-	//	}
-	//}
+	/// <summary>
+	/// Переход в главное меню
+	/// </summary>
+	public void __MainMenu()
+	{
+		ValuesController.setScoreValue(0); //Обнуление текущего счета при переходе между сценами
+		Debug.Log("Загрузка сцены MainMenu");
+		SceneManager.LoadSceneAsync("MainMenu");
+	}
+
+	/// <summary>
+	/// Продолжить
+	/// </summary>
+	public void __Continue()
+	{
+		if(!Statements.gameOver)
+		{
+			pauseButton.interactable = true;
+			pausePanel.SetActive(false);
+			Statements.setPause(false);
+		}
+	}
+
+	/// <summary>
+	/// Рестарт
+	/// </summary>
+	public void __Restart()
+	{
+		if (Statements.gameOver)
+		{
+			ValuesController.setScoreValue(0);
+
+			Debug.Log("Перезагрузка сцены");
+			var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+			SceneManager.LoadScene(sceneIndex);
+			return;
+		}
+	}
+
+	/// <summary>
+	/// Восстановление за души
+	/// </summary>
+	public void __SoulRecovery()
+	{
+		ValuesController.applyRecovery();
+		Recovery.startRecovery();
+		__Continue();
+	}
 }

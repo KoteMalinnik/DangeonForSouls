@@ -10,29 +10,29 @@ public class AudioManager : MonoBehaviour
 	/// Основная музыкальная тема
 	/// </summary>
 	AudioClip mainThemeMusic = null;
-	static AudioSource mainThemeSource = null;
+	static AudioSource mainThemeMusicSource = null;
 
 	[SerializeField]
 	/// <summary>
 	/// Звук, воспроизводимый при проигрыше
 	/// </summary>
 	AudioClip gameOverSound = null;
-	static AudioSource gameOverSource = null;
+	static AudioSource gameOverSoundSource = null;
 
 	[SerializeField]
 	/// <summary>
 	/// Звук, воспроизводимый при столкновении с объектом Soul
 	/// </summary>
 	AudioClip collectingSoulSound = null;
-	static AudioSource collectingSoulSource = null;
+	static AudioSource collectingSoulSoundSource = null;
 
 	void Awake()
 	{
 		DontDestroyOnLoad(this);
 
-		setupAudioSource(audioSource: ref mainThemeSource, audioClip: mainThemeMusic, volume: 0.4f, loop: true, playOnAwake: true);
-		setupAudioSource(audioSource: ref gameOverSource, audioClip: gameOverSound, volume: 0.2f, loop: false, playOnAwake: false);
-		setupAudioSource(audioSource: ref collectingSoulSource, audioClip: collectingSoulSound, volume: 0.2f, loop: false, playOnAwake: false);
+		setupAudioSource(audioSource: ref mainThemeMusicSource, audioClip: mainThemeMusic, volume: 0.4f, loop: true, playOnAwake: true);
+		setupAudioSource(audioSource: ref gameOverSoundSource, audioClip: gameOverSound, volume: 0.2f, loop: false, playOnAwake: false);
+		setupAudioSource(audioSource: ref collectingSoulSoundSource, audioClip: collectingSoulSound, volume: 0.2f, loop: false, playOnAwake: false);
 	}
 
 	/// <summary>
@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
 		Debug.Log($"Звук: {newAudioStatement}");
 		audioStatement = newAudioStatement;
 
-		if (mainThemeSource != null) switchMusic();
+		if (mainThemeMusicSource != null) switchMusic();
 	}
 
 	/// <summary>
@@ -78,20 +78,19 @@ public class AudioManager : MonoBehaviour
 	{
 		if(audioStatement)
 		{
-			mainThemeSource.Play();
+			mainThemeMusicSource.Play();
 			return;
 		}
 
-		mainThemeSource.Stop();
+		mainThemeMusicSource.Stop();
 	}
-
 
 	/// <summary>
 	/// Воспроизвести звук при проигрыше
 	/// </summary>
 	public static void playGameOverSound()
 	{
-		if (gameOverSource != null && audioStatement) gameOverSource.Play();
+		if (gameOverSoundSource != null && audioStatement) gameOverSoundSource.Play();
 	}
 
 	/// <summary>
@@ -99,6 +98,6 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	public static void playCollectingSoulSound()
 	{
-		if (collectingSoulSource != null && audioStatement) collectingSoulSource.Play();
+		if (collectingSoulSoundSource != null && audioStatement) collectingSoulSoundSource.Play();
 	}
 }
