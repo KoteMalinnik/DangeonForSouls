@@ -9,12 +9,12 @@ public class SoulAnimation : MonoBehaviour
 	/// Свет, прикрепленный к дочернему объекту
 	/// </summary>
 	Light halo;
-	SoulRaplacer visibilityListener;
+	VisibilityListener visibilityListener;
 
 	void Awake()
 	{
 		halo = GetComponentInChildren<Light>();
-		visibilityListener = GetComponent<SoulRaplacer>();
+		visibilityListener = GetComponent<VisibilityListener>();
 	}
 
 	[SerializeField, Tooltip("Скорость изменения размера ореола (halo)")]

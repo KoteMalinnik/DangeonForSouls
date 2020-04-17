@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 8907493188454803649}
   - component: {fileID: 7257399256239475857}
   - component: {fileID: -807630090232297665}
+  - component: {fileID: 8336647390700040976}
   m_Layer: 8
   m_Name: Soul
   m_TagString: Untagged
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8907493188454803648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9d89703597da14b830a4cc4ddab8b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d24dca6a2fda994d90c6cb0f70de439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-807630090232297665
@@ -214,3 +215,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   haloRangeAnimationSpeed: 0.1
   moveAnimationSpeed: 0.1
+--- !u!114 &8336647390700040976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907493188454803648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7357828e0df53f4295c3c3fcc94e9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

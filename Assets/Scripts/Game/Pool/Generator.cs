@@ -3,6 +3,7 @@
 /// <summary>
 /// Генератор объектов для пула
 /// </summary>
+[RequireComponent(typeof(Pool))]
 public class Generator : MonoBehaviour
 {
 	/// <summary>
