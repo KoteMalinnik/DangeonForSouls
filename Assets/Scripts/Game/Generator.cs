@@ -17,19 +17,16 @@ public class Generator : MonoBehaviour
 	/// </summary>
 	string prefabName = null;
 
-	void loadPrefab()
-	{
-		var path = @"Prefabs\" + prefabName;
-		Debug.Log($"<color=yellow>Загрузка префаба {prefabName} по пути {path}</color>");
-		poolObjectPrefab = Resources.Load<PoolObject>(path);
-	}
-
 	[SerializeField, Range(1, 50)]
+	/// <summary>
+	/// Количество генерируемых объектов. Задает максимальное количество объектов в пуле
+	/// </summary>
 	int objectsCount = 0;
 
-	void Start()
+	void Awake()
 	{
 		loadPrefab();
+		renameGameObject();
 
 		Pool pool = transform.GetComponent<Pool>();
 		pool.initialize(objectsCount);
@@ -50,6 +47,24 @@ public class Generator : MonoBehaviour
 		}
 
 		Destroy(this);
+	}
+
+	/// <summary>
+	/// Загрузить префаб из папки Resources\Prefabs
+	/// </summary>
+	void loadPrefab()
+	{
+		var path = @"Prefabs\" + prefabName;
+		Debug.Log($"<color=yellow>Загрузка префаба {prefabName} по пути {path}</color>");
+		poolObjectPrefab = Resources.Load<PoolObject>(path);
+	}
+
+	/// <summary>
+	/// Переименовать объект по имени префаба
+	/// </summary>
+	void renameGameObject()
+	{
+		gameObject.name = $"{prefabName}sPool";
 	}
 
 	void OnDestroy()

@@ -2,14 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Перемещение объектов в пространстве
-/// </summary>
-public static class Replacer// : MonoBehaviour
+public class ObjectsController : MonoBehaviour
 {
-	public static void replaceObject(PoolObject objectToReplace)
+    [SerializeField]
+	/// <summary>
+	/// Разница позиции по оси Х
+	/// </summary>
+	float deltaPositionX = 50;
+
+	[SerializeField]
+	/// <summary>
+	/// Вращение объекта в эйлеровских углах
+	/// </summary>
+	Vector3 rotation = Vector3.zero;
+
+	/// <summary>
+	/// Позиция предыдущего объекта
+	/// </summary>
+	Vector3 lastObjectPosition = Vector3.zero;
+
+	void Awake()
 	{
-		Debug.Log($"Перемещение объекта (ID = {objectToReplace.name})");
+		lastObjectPosition = new Vector3(-deltaPositionX, 0, 0);
+	}
+
+	public void newObjectInThePoolEvent(Pool pool)
+	{
+		Debug.Log("Свободен объект в пуле");
+
+		Transform currentPoolObjectTransform = pool.getObject().transform;
+
+		Replacer.setNewPosition(ref currentPoolObjectTransform, ref lastObjectPosition, deltaPositionX);
+		if (rotation != Vector3.zero) Rotator.setInitialRotation(ref currentPoolObjectTransform, rotation);
 	}
 
 	//public void setObjectPositionAndScale(GameObject[,] pull)

@@ -9,7 +9,7 @@ public class PoolObject : MonoBehaviour
 
 	public void setParentPool(Pool newParentPool)
 	{
-		if (newParentPool == null) Debug.LogError("Пул Replacer-а не инициализирован!");
+		if (newParentPool == null) Debug.LogError("Пул не инициализирован!");
 		parentPool = newParentPool;
 	}
 
