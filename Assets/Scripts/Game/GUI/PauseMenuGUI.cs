@@ -87,7 +87,6 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	public void __MainMenu()
 	{
-		ValuesController.setScoreValue(0); //Обнуление текущего счета при переходе между сценами
 		Debug.Log("Загрузка сцены MainMenu");
 		SceneManager.LoadSceneAsync("MainMenu");
 	}
@@ -112,8 +111,6 @@ public class PauseMenuGUI : baseGUI
 	{
 		if (Statements.gameOver)
 		{
-			ValuesController.setScoreValue(0);
-
 			Debug.Log("Перезагрузка сцены");
 			var sceneIndex = SceneManager.GetActiveScene().buildIndex;
 			SceneManager.LoadScene(sceneIndex);
@@ -128,5 +125,10 @@ public class PauseMenuGUI : baseGUI
 	{
 		Recovery.applyRecovery();
 		__Continue();
+	}
+
+	void OnDestroy()
+	{
+		ValuesController.setScoreValue(0); //Обнуление текущего счета при переходе между сценами
 	}
 }
