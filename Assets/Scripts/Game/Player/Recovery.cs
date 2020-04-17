@@ -5,6 +5,36 @@ using UnityEngine;
 //!!! Рефакторить
 public class Recovery : MonoBehaviour
 {
+	/// <summary>
+	/// True, если количество собранных душ превышает цену восстановления
+	/// </summary>
+	public static bool canRecovery()
+	{
+		bool result = ValuesController.colectedSoulsValue >= ValuesController.recoveryCostValue;
+		return result;
+	}
+
+	/// <summary>
+	/// Применить восстановление за души
+	/// </summary>
+	public static void applyRecovery()
+	{
+		Debug.Log("Расчет количества оставшихся душ и новой цены");
+
+		//Вычитаем цену восстановления из количества собранных душ
+		var restOfCollectedSouls = ValuesController.colectedSoulsValue - ValuesController.recoveryCostValue;
+		ValuesController.setСolectedSoulsValue(restOfCollectedSouls);
+
+		//Добавляем к цене
+		var newRecoveryCostValue = ValuesController.recoveryCostValue + 100;
+		ValuesController.setRecoveryCostValue(newRecoveryCostValue);
+
+		startRecovery();
+	}
+
+	/// <summary>
+	/// Запустить восстановление
+	/// </summary>
 	public static void startRecovery()
 	{
 		Debug.Log("Запуск восстановления");

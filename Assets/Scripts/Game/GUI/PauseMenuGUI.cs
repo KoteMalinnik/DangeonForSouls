@@ -19,12 +19,12 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	Button pauseButton = null;
 
-
 	[SerializeField]
 	/// <summary>
 	/// Кнопка восстановления за определенное количество душ
 	/// </summary>
 	Button soulRecovery = null;
+
 	/// <summary>
 	/// Текст кнопки recoveryBoost
 	/// </summary>
@@ -75,7 +75,7 @@ public class PauseMenuGUI : baseGUI
 		if (Statements.gameOver)
 		{
 			//Восстановление за души активно, если есть нужное количество душ
-			soulRecovery.interactable = ValuesController.canRecovery();
+			soulRecovery.interactable = Recovery.canRecovery();
 
 			//Установка текста кнопки continueOrRestart
 			continueOrRestart.text = _restart; 
@@ -126,8 +126,7 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	public void __SoulRecovery()
 	{
-		ValuesController.applyRecovery();
-		Recovery.startRecovery();
+		Recovery.applyRecovery();
 		__Continue();
 	}
 }

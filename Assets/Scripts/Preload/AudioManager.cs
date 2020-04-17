@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
 
 	void Start()
 	{
-		switchMusic();
+		switchMusic(); //Т.к. отсутствуют какие-либо Toggle в сцене Preload, то надо переключить Источник Музыки вручную
 	}
 
 	/// <summary>

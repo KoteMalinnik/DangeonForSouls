@@ -22,7 +22,7 @@ public static class ValuesController
 	/// <summary>
 	/// Количество собранных душ
 	/// </summary>
-	public static int colectedSoulsValue { get; private set; } = 0;
+	public static int colectedSoulsValue { get; private set; } = 500;
 
 	/// <summary>
 	/// Установка количества собранных душ
@@ -46,7 +46,7 @@ public static class ValuesController
 	public static void setRecoveryCostValue(int newRecoveryCostValue)
 	{
 		recoveryCostValue = newRecoveryCostValue;
-		Debug.Log($"Установка значения bestScoreValue: {recoveryCostValue}");
+		Debug.Log($"Установка значения recoveryCostValue: {recoveryCostValue}");
 	}
 
 	/// <summary>
@@ -70,34 +70,5 @@ public static class ValuesController
 		if (scoreValue > bestScoreValue) bestScoreValue = scoreValue;
 
 		RuntimeGUI.updateCurrentScoreValue(scoreValue);
-	}
-
-	/// <summary>
-	/// True, если количество собранных душ превышает цену восстановления
-	/// </summary>
-	public static bool canRecovery()
-	{
-		return colectedSoulsValue >= recoveryCostValue;
-	}
-
-	/// <summary>
-	/// Применить восстановление за души
-	/// </summary>
-	public static void applyRecovery()
-	{
-		Debug.Log("Применение восстановления за души");
-
-		if (canRecovery())
-		{
-			//вычитаем стоимость продолжения от накопленных душ
-			var restOfCollectedSouls = colectedSoulsValue - recoveryCostValue;
-			setСolectedSoulsValue(restOfCollectedSouls);
-
-			recoveryCostValue += 100;
-
-			return;
-		}
-
-		Debug.LogError("<color=red>Ошибка! Кнопка не должна была быть активна</color>");
 	}
 }

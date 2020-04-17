@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
+using System.Collections;
 
 /// <summary>
 /// Контроль рекламы
@@ -44,7 +45,7 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 		{
 			if (Advertisement.isSupported)
 			{
-				initializeAds();
+				StartCoroutine(reinitializeAds());
 				return;
 			}
 
@@ -53,24 +54,36 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 	}
 
 	/// <summary>
+	/// Повторная инициализация рекламы, пока она не инициализируется
+	/// </summary>
+	/// <returns>The ads.</returns>
+	IEnumerator reinitializeAds()
+	{
+		Debug.Log("<color=yellow>Инициализация рекламы</color>");
+
+		while (!Advertisement.isInitialized)
+		{
+			initializeAds();
+			yield return new WaitForEndOfFrame();
+		}
+
+		Debug.Log("<color=green>Реклама инициализирована</color>");
+		yield return null;
+	}
+
+	/// <summary>
 	/// Инициализация рекламы
 	/// </summary>
 	void initializeAds()
 	{
-		Advertisement.Initialize("3472065", true);
+		Advertisement.Initialize(gameID, true);
 
 		if (Advertisement.isInitialized)
 		{
-			Debug.Log("<color=green>Реклама инициализирована</color>");
-
 			adsRecovery.interactable = Advertisement.IsReady(myPlacementID);
 			if (adsRecovery) adsRecovery.onClick.AddListener(ShowRewardedVideo);
 			Advertisement.AddListener(this);
-
-			return;
 		}
-
-		Debug.LogError("<color=red>Реклама не была инициализирована</color>");
 	}
 
 	/// <summary>
