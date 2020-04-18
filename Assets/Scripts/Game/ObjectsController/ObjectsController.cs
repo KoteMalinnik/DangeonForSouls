@@ -33,7 +33,7 @@ public class ObjectsController : MonoBehaviour
 		Transform currentPoolObjectTransform = pool.getObject().transform;
 
 		Replacer.setNewPosition(ref currentPoolObjectTransform, ref lastObjectPosition, deltaPositionX);
-		if (rotation != Vector3.zero) Rotator.setInitialRotation(ref currentPoolObjectTransform, rotation);
+		if (rotation != Vector3.zero) Rotator.setRotation(ref currentPoolObjectTransform, rotation);
 	}
 
 	//public void setObjectPositionAndScale(GameObject[,] pull)
@@ -80,29 +80,5 @@ public class ObjectsController : MonoBehaviour
 
 	//	//переключение размещения на другую сторону
 	//	placeUpper = !placeUpper;
-	//}
-
-	////обновляет пулл объектов и возвращает старый первый (новый последний)
-	//void updatePull(GameObject[,] pull)
-	//{
-	//	GameObject temp1 = getGround(pull), temp2 = getHole(pull);
-	//	for (int i = 1; i < pull.Length/2; i++)
-	//	{
-	//		pull[i - 1, 0] = pull[i, 0];
-	//		pull[i - 1, 1] = pull[i, 1];
-	//	}
-
-	//	pull[pull.Length/2 - 1, 0] = temp1;
-	//	pull[pull.Length/2 - 1, 1] = temp2;
-	//}
-
-	//GameObject getGround(GameObject[,] pull)
-	//{
-	//	return pull[0,0];
-	//}
-
-	//GameObject getHole(GameObject[,] pull)
-	//{
-	//	return pull[0, 1];
 	//}
 }
