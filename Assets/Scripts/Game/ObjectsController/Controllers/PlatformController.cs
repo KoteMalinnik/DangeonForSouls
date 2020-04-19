@@ -14,13 +14,16 @@ public sealed class PlatformController : ObjectsController
 		getObjects(pool.getCurrentSize());
 	}
 
-	//public new void getObjectFromPool()
-	//{
-	//	var objTransform = base.getObjectFromPool();
-	//	setupPosition(objTransform);
-	//	setupScale(objTransform);
-	//	soulsController.fillObjectWithSouls(objTransform); //Заполнить платформу объектами Soul
-	//}
+	protected override void setupObject(PoolObject obj)
+	{
+		Transform objTransform = obj.transform;
+
+		setupScale(objTransform);
+		setupPosition(objTransform);
+
+		if (soulsController == null) return;
+		soulsController.fillObjectWithSouls(objTransform); //Заполнить платформу объектами Soul
+	}
 
 	/// <summary>
 	/// Размер последнего объекта по оси Х 
