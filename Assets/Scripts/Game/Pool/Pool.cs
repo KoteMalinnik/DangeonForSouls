@@ -4,11 +4,8 @@ using UnityEngine;
 /// <summary>
 /// Пул объектов типа GameObject
 /// </summary>
-[RequireComponent(typeof(ObjectsController))]
 public class Pool : MonoBehaviour
 {
-	ObjectsController objectsController = null;
-
 	/// <summary>
 	/// Максимальный размер пула
 	/// </summary>
@@ -46,8 +43,6 @@ public class Pool : MonoBehaviour
 		changeMaxSize(newMaxSize);
 		list = new List<PoolObject>(maxSize);
 		Debug.Log("Инициализирован пул с максимальным количеством объектов: " + maxSize);
-
-		objectsController = GetComponent<ObjectsController>();
 	}
 
 	/// <summary>
@@ -64,11 +59,11 @@ public class Pool : MonoBehaviour
 			}
 
 			list.Add(newPoolObject);
+
 			newPoolObject.gameObject.SetActive(false);
 
 			Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
 
-			objectsController.newObjectInThePoolEvent(this);
 			return;
 		}
 
@@ -104,6 +99,7 @@ public class Pool : MonoBehaviour
 
 		var objectToReturn = list[0];
 		removeObject(objectToReturn);
+
 		objectToReturn.gameObject.SetActive(true);
 
 		Debug.Log($"<color=green>Объект (ID {objectToReturn.name}) выделен</color>");

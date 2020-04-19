@@ -15,20 +15,16 @@ public class PoolObject : MonoBehaviour
 
     void OnBecameInvisible()
 	{
-		#if UNITY_EDITOR
-		parentPool.addObject(this);
-		#endif
-
 		//Если игра не находится в состоянии Конеца Игры
 		//Если игра не находится в состоянии Пауза
 		if (!Statements.gameOver && !Statements.pause)
 		{
-			parentPool.addObject(this);
+			if (parentPool != null) parentPool.addObject(this);
 		}
 	}
 
 	void OnDestroy()
 	{
-		parentPool.removeObject(this);
+		if (parentPool != null) parentPool.removeObject(this);
 	}
 }

@@ -10,6 +10,6 @@ public class Rotator : MonoBehaviour
 	/// </summary>
 	public static void setRotation(ref Transform objectTransform, Vector3 newEulerAngles)
 	{
-		objectTransform.eulerAngles = newEulerAngles;
+		objectTransform.localEulerAngles = newEulerAngles;
 	}
 }

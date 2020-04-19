@@ -8,7 +8,7 @@ public static class Statements
     /// <summary>
 	/// Состояние паузы игрового процесса
 	/// </summary>
-	public static bool pause { get; private set; } = true;
+	public static bool pause { get; private set; } = false;
 
 	/// <summary>
 	/// Устанавливает состояние паузы как newPause
