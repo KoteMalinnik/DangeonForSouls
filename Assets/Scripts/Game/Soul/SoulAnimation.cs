@@ -33,19 +33,16 @@ public class SoulAnimation : MonoBehaviour
 	float startPositionY;  //начальная позиция объекта по оси Y
 	float maxPhase; //максимальная фаза для анимации
 
-	void Start()
+	void Update()
 	{
-		startPositionY = cachedTransform.localPosition.y; //получаем позицию по оси Y
-		maxPhase = Random.Range(0, 0.1f); //устанавливаем случайную фазу
+		//Благодаря случайной фазе объекты двигаются по-разному и имеют разные размеры ореолов
+		halo.range = getNewHaloRange();
+		cachedTransform.localPosition = getNewPosition();
 	}
 
-	//void Update()
-	//{
-	//	//Благодаря случайной фазе объекты двигаются по-разному и имеют разные размеры ореолов
-	//	halo.range = getNewHaloRange();
-	//	cachedTransform.localPosition = getNewPosition();
-	//}
-
+	/// <summary>
+	/// Рассчитать новый range для света
+	/// </summary>
 	float getNewHaloRange()
 	{
 		var phase = Mathf.PingPong(haloRangeAnimationSpeed * Time.time, maxPhase);
@@ -53,6 +50,9 @@ public class SoulAnimation : MonoBehaviour
 		return newRange;
 	}
 
+	/// <summary>
+	/// Рассчитать новую позицию
+	/// </summary>
 	Vector3 getNewPosition()
 	{
 		var phase = Mathf.PingPong(moveAnimationSpeed * Time.time, maxPhase);
@@ -61,5 +61,11 @@ public class SoulAnimation : MonoBehaviour
 		newPosition.y = startPositionY + phase;
 
 		return newPosition;
+	}
+
+	public void setStartParametrs()
+	{
+		startPositionY = cachedTransform.position.y; //получаем позицию по оси Y
+		maxPhase = Random.Range(0, 0.1f); //устанавливаем случайную фазу
 	}
 }

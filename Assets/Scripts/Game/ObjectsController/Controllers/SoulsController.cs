@@ -46,6 +46,8 @@ public class SoulsController : MonoBehaviour
 		{
 			Transform objTransform = obj.transform;
 			setupPosition(objTransform);
+
+			obj.GetComponent<SoulAnimation>().setStartParametrs();
 		}
 	}
 
@@ -55,7 +57,7 @@ public class SoulsController : MonoBehaviour
 	static void setupPosition(Transform objTransform)
 	{
 		//Выставляем позицию по оси Y так, чтобы душа была на видимой стороне платформы
-		var newPosition = objTransform.position;
+		var newPosition = objTransform.localPosition;
 
 		newPosition.x = lastObjectPositionX;
 		newPosition.y = platformPosition.y > 0 ? platformPosition.y - 1 : platformPosition.y + 1;
