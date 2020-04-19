@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SoulsController : MonoBehaviour
+public class SoulsController : ObjectsController
 {
-	/// <summary>
-	/// Контролируемый пул объектов
-	/// </summary>
-	static Pool pool { get; set; } = null;
-
-	void Awake()
-	{
-		pool = GetComponent<Pool>();
-	}
+	protected override void Start() {}
 
 	/// <summary>
 	/// Позиция предыдущего объекта по оси Х
 	/// </summary>
-	static float lastObjectPositionX = 0;
+	static Vector3 lastObjectPosition = Vector3.zero;
 	static Vector3 platformPosition = Vector3.zero;
 
 	public static void fillObjectWithSouls(Transform platformTransform)
@@ -27,12 +19,12 @@ public class SoulsController : MonoBehaviour
 
 		//Выставляем начальную позицию на платформе
 		platformPosition = platformTransform.localPosition;
-		lastObjectPositionX = platformPosition.x - platformTransform.localScale.x / 2 + 1;
+		lastObjectPosition.x = platformPosition.x - platformTransform.localScale.x / 2 + 1;
 
 		int objectsCount = (int)platformTransform.localScale.x - 1;
 
 		Debug.Log($"Взять {objectsCount} объектов из пула SoulsPool");
-		for (; objectsCount > 0; objectsCount--, lastObjectPositionX++)
+		for (; objectsCount > 0; objectsCount--, lastObjectPosition.x++)
 		{
 			getObjectFromPool();
 		}
@@ -40,15 +32,16 @@ public class SoulsController : MonoBehaviour
 
 	static void getObjectFromPool()
 	{
+		Debug.Log($"Взять объект из пула {pool.name}");
 		var obj = pool.getObject();
 
-		if (obj != null)
-		{
-			Transform objTransform = obj.transform;
-			setupPosition(objTransform);
+		if (obj == null) return;
 
-			obj.GetComponent<SoulAnimation>().setStartParametrs();
-		}
+		Transform objTransform = obj.transform;
+
+		setupPosition(objTransform);
+
+		obj.GetComponent<SoulAnimation>().setStartParametrs();
 	}
 
 	/// <summary>
@@ -59,7 +52,7 @@ public class SoulsController : MonoBehaviour
 		//Выставляем позицию по оси Y так, чтобы душа была на видимой стороне платформы
 		var newPosition = objTransform.localPosition;
 
-		newPosition.x = lastObjectPositionX;
+		newPosition.x = lastObjectPosition.x;
 		newPosition.y = platformPosition.y > 0 ? platformPosition.y - 1 : platformPosition.y + 1;
 		newPosition.z = platformPosition.z;
 

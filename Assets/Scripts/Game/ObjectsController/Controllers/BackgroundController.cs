@@ -3,51 +3,24 @@
 /// <summary>
 /// Контроль перемещения объектов Background
 /// </summary>
-public class BackgroundController : MonoBehaviour
+public class BackgroundController : ObjectsController
 {
-	/// <summary>
-	/// Контролируемый пул объектов
-	/// </summary>
-	static Pool pool { get; set; } = null;
-
 	/// <summary>
 	/// Ширина объекта
 	/// </summary>
 	static readonly float objWidth = 50;
 
-	void Awake()
-	{
-		pool = GetComponent<Pool>();
-	}
-
-	void Start()
-	{
-		int objectsCount = pool.getCurrentSize();
-		Debug.Log($"Взять {objectsCount} объектов из пула BackgroundsPool");
-		for (; objectsCount > 0; objectsCount--)
-		{
-			getObjectFromPool();
-		}
-	}
-
 	public void getObjectFromPool()
 	{
-		Debug.Log("Взять объект из пула BackgroundsPool");
+		Debug.Log($"Взять объект из пула {pool.name}");
 		var obj = pool.getObject();
 
-		if(obj != null)
-		{
-			Transform objTransform = obj.transform;
-			setupRotation(objTransform);
-			setupPosition(objTransform);
-		}
-	}
+		if (obj == null) return;
 
-	/// <summary>
-	/// Установить вращение Transform
-	/// </summary>
-	static void setupRotation(Transform objTransform)
-	{
+		Transform objTransform = obj.transform;
+
+		setupPosition(objTransform);
+
 		Rotator.setRotation(objTransform, new Vector3(-90, 0, 0));
 	}
 

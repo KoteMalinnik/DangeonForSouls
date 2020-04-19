@@ -3,42 +3,22 @@
 /// <summary>
 /// Контроль перемещения объектов Platfrom
 /// </summary>
-public class PlatformController : MonoBehaviour
+public class PlatformController : ObjectsController
 {
-	/// <summary>
-	/// Контролируемый пул объектов
-	/// </summary>
-	static Pool pool { get; set; } = null;
-
-	void Awake()
-	{
-		pool = GetComponent<Pool>();
-	}
-
-	void Start()
-	{
-		int objectsCount = pool.getCurrentSize();
-		Debug.Log($"Взять {objectsCount} объектов из пула PlatformsPool");
-		for (; objectsCount > 0; objectsCount--)
-		{
-			getObjectFromPool();
-		}
-	}
-
 	public void getObjectFromPool()
 	{
-		Debug.Log("Взять объект из пула PlatformsPool");
+		Debug.Log($"Взять объект из пула {pool.name}");
 		var obj = pool.getObject();
 
-		if (obj != null)
-		{
-			Transform objTransform = obj.transform;
-			setupScale(objTransform);
-			setupPosition(objTransform);
+		if (obj == null) return;
 
-			//Заполнить платформу объектами Soul
-			SoulsController.fillObjectWithSouls(objTransform);
-		}
+		Transform objTransform = obj.transform;
+
+		setupPosition(objTransform);
+		setupScale(objTransform);
+
+		//Заполнить платформу объектами Soul
+		SoulsController.fillObjectWithSouls(objTransform);
 	}
 
 	/// <summary>
