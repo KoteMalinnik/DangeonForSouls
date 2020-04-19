@@ -34,6 +34,5 @@ public class PoolObject : MonoBehaviour
 	void OnDestroy()
 	{
 		if (OnReturningToPoolEvent != null) OnReturningToPoolEvent.RemoveAllListeners();
-		if (parentPool != null) parentPool.removeObject(this);
 	}
 }

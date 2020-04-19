@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Контроль перемещения объектов Platfrom
+/// </summary>
 public class PlatformController : MonoBehaviour
 {
 	/// <summary>
@@ -17,7 +18,7 @@ public class PlatformController : MonoBehaviour
 	void Start()
 	{
 		int objectsCount = pool.getCurrentSize();
-		Debug.Log($"Взять {objectsCount} объектов из пула");
+		Debug.Log($"Взять {objectsCount} объектов из пула PlatformsPool");
 		for (; objectsCount > 0; objectsCount--)
 		{
 			getObjectFromPool();
@@ -26,14 +27,17 @@ public class PlatformController : MonoBehaviour
 
 	public void getObjectFromPool()
 	{
-		Debug.Log("Взять объект из пула");
+		Debug.Log("Взять объект из пула PlatformsPool");
 		var obj = pool.getObject();
 
 		if (obj != null)
 		{
 			Transform objTransform = obj.transform;
-			setupScale(ref objTransform);
-			setupPosition(ref objTransform);
+			setupScale(objTransform);
+			setupPosition(objTransform);
+
+			//Заполнить платформу объектами Soul
+			SoulsController.fillObjectWithSouls(objTransform);
 		}
 	}
 
@@ -42,7 +46,7 @@ public class PlatformController : MonoBehaviour
 	/// </summary>
 	static float lastObjectScaleX = 0;
 
-	void setupScale(ref Transform objTransform)
+	void setupScale(Transform objTransform)
 	{
 		var newScale = objTransform.localScale;
 		newScale.x = Random.Range(4, 10);
@@ -54,12 +58,12 @@ public class PlatformController : MonoBehaviour
 	/// <summary>
 	/// Позиция последнего объекта по оси Х
 	/// </summary>
-	static Vector3 lastObjectPosition = new Vector3(-10, 4, 3);
+	static Vector3 lastObjectPosition = new Vector3(-4, 4, 3);
 
 	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	void setupPosition(ref Transform objTransform)
+	void setupPosition(Transform objTransform)
 	{
 		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
 		var newPosition = lastObjectPosition;
@@ -68,7 +72,7 @@ public class PlatformController : MonoBehaviour
 
 		newPosition.x += lastObjectScaleX / 2; //Учесть предыдущий размер
 
-		Replacer.setNewPosition(ref objTransform, newPosition);
+		Replacer.setNewPosition(objTransform, newPosition);
 
 		newPosition.x += objTransform.localScale.x / 2; //Учесть текущий размер
 

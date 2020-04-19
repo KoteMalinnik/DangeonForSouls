@@ -40,7 +40,7 @@ public class Generator : MonoBehaviour
 			newPoolObject = Instantiate(poolObjectPrefab, Vector3.zero, Quaternion.identity);
 
 			newPoolObject.transform.parent = poolTransform;
-			newPoolObject.name = i.ToString();
+			newPoolObject.name = $"{prefabName} ({i})";
 			newPoolObject.setParentPool(pool);
 
 			pool.addObject(newPoolObject);
@@ -69,6 +69,6 @@ public class Generator : MonoBehaviour
 
 	void OnDestroy()
 	{
-		Debug.Log("Объект <color=white>Generator</color> уничтожен");
+		Debug.Log($"Объект <color=white>{prefabName}sGenerator</color> уничтожен");
 	}
 }

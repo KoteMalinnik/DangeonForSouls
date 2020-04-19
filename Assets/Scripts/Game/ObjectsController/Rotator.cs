@@ -8,7 +8,7 @@ public class Rotator : MonoBehaviour
     /// <summary>
 	/// Установить вращение объекта в эйлеровских углах
 	/// </summary>
-	public static void setRotation(ref Transform objectTransform, Vector3 newEulerAngles)
+	public static void setRotation(Transform objectTransform, Vector3 newEulerAngles)
 	{
 		objectTransform.localEulerAngles = newEulerAngles;
 	}

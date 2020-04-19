@@ -62,7 +62,7 @@ public class Pool : MonoBehaviour
 
 			newPoolObject.gameObject.SetActive(false);
 
-			Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
+			//Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
 
 			return;
 		}
@@ -79,7 +79,7 @@ public class Pool : MonoBehaviour
 		{
 			list.Remove(poolObject);
 
-			Debug.Log($"<color=green>Объект (ID {poolObject.name}) удален из пула.</color>");
+			//Debug.Log($"<color=green>Объект (ID {poolObject.name}) удален из пула.</color>");
 			return;
 		}
 
@@ -102,7 +102,7 @@ public class Pool : MonoBehaviour
 
 		objectToReturn.gameObject.SetActive(true);
 
-		Debug.Log($"<color=green>Объект (ID {objectToReturn.name}) выделен</color>");
+		//Debug.Log($"<color=green>Объект (ID {objectToReturn.name}) выделен</color>");
 		return objectToReturn;
 	}
 }

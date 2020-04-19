@@ -10,7 +10,7 @@ public static class Rescaler
 	/// </summary>
 	/// <param name="objectTransform">Transform объекта.</param>
 	/// <param name="newScale">Новый размер.</param>
-	public static void setNewScale(ref Transform objectTransform, Vector3 newScale)
+	public static void setNewScale(Transform objectTransform, Vector3 newScale)
 	{
 		objectTransform.localScale = newScale;
 	}
@@ -20,7 +20,7 @@ public static class Rescaler
 	/// </summary>
 	/// <param name="objectTransform">Transform объекта.</param>
 	/// <param name="newScaleX">Новый размер по оси Х.</param>
-	public static void setNewScale(ref Transform objectTransform, float newScaleX)
+	public static void setNewScale(Transform objectTransform, float newScaleX)
 	{
 		var currentScale = objectTransform.localScale;
 		objectTransform.localScale = new Vector3(newScaleX, currentScale.y, currentScale.z);

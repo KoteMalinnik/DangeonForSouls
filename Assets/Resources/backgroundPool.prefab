@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204161269766459441}
   - component: {fileID: -7671593646900770144}
   m_Layer: 0
-  m_Name: objectsPool
+  m_Name: backgroundPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: Background
-  objectsCount: 3
+  objectsCount: 2
 --- !u!114 &-7671593646900770144
 MonoBehaviour:
   m_ObjectHideFlags: 0
