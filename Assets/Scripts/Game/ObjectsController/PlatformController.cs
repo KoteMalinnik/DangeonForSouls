@@ -4,151 +4,74 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
- //   [SerializeField, Range(1, 50)]
-	///// <summary>
-	///// Количество объектов, которые будут взяты из пула и помещены на сцену в методе Start()
-	///// </summary>
-	//int objectsAtStartCount = 1;
+	/// <summary>
+	/// Контролируемый пул объектов
+	/// </summary>
+	static Pool pool { get; set; } = null;
 
-	///// <summary>
-	///// Контролируемый пул объектов
-	///// </summary>
-	//Pool pool { get; set; } = null;
+	void Awake()
+	{
+		pool = GetComponent<Pool>();
+	}
 
-	//Camera mainCamera { get; set; } = null;
-	//Transform mainCameraTransfrom { get; set; } = null;
+	void Start()
+	{
+		int objectsCount = pool.getCurrentSize();
+		Debug.Log($"Взять {objectsCount} объектов из пула");
+		for (; objectsCount > 0; objectsCount--)
+		{
+			getObjectFromPool();
+		}
+	}
 
-	///// <summary>
-	///// Позиция камеры для запроса объекта из пула
-	///// </summary>
-	//float cameraPositionToGetObjFromPool { get; set; } = 0;
+	public void getObjectFromPool()
+	{
+		Debug.Log("Взять объект из пула");
+		var obj = pool.getObject();
 
-	///// <summary>
-	///// Ширина объекта
-	///// </summary>
-	//readonly float objWidth = 50;
+		if (obj != null)
+		{
+			Transform objTransform = obj.transform;
+			setupScale(ref objTransform);
+			setupPosition(ref objTransform);
+		}
+	}
 
-	///// <summary>
-	///// Расстояние от позиции камеры до пересечения перспективы с объектом
-	///// </summary>
-	//readonly float lengthFromoObjectCenterToIntersection = 9.56f;
+	/// <summary>
+	/// Размер последнего объекта по оси Х 
+	/// </summary>
+	static float lastObjectScaleX = 0;
 
-	///// <summary>
-	///// постоянная разница от края объекта до пересечения с перспективой
-	///// </summary>
-	//readonly float constDelta = 13f;
+	void setupScale(ref Transform objTransform)
+	{
+		var newScale = objTransform.localScale;
+		newScale.x = Random.Range(4, 10);
 
-	//void Awake()
-	//{
-	//	mainCamera = Camera.main;
-	//	mainCameraTransfrom = Camera.main.transform;
+		objTransform.localScale = newScale;
+		lastObjectScaleX = newScale.x;
+	}
 
-	//	pool = GetComponent<Pool>();
-	//}
+	/// <summary>
+	/// Позиция последнего объекта по оси Х
+	/// </summary>
+	static Vector3 lastObjectPosition = new Vector3(-10, 4, 3);
 
-	//void Start()
-	//{
-	//	Debug.Log($"Взять {objectsAtStartCount} объектов из пула");
-	//	for (int objectsCount = objectsAtStartCount; objectsCount > 0; objectsCount--)
-	//	{
-	//		getObjectFromPool();
-	//	}
-	//}
+	/// <summary>
+	/// Установить позицию Transform
+	/// </summary>
+	void setupPosition(ref Transform objTransform)
+	{
+		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
+		var newPosition = lastObjectPosition;
+		if (lastObjectPosition.y < 0) newPosition.y = 4;
+		if (lastObjectPosition.y > 0) newPosition.y = -4;
 
-	//void Update()
-	//{
-	//	if (mainCameraTransfrom.position.x >= cameraPositionToGetObjFromPool)
-	//	{
-	//		Debug.Log("<color=yellow>Update: Позиция камеры достигнута</color>");
-	//		getObjectFromPool();
-	//	}
-	//}
+		newPosition.x += lastObjectScaleX / 2; //Учесть предыдущий размер
 
-	//void getObjectFromPool()
-	//{
-	//	Debug.Log("Взять объект из пула");
-	//	var obj = pool.getObject();
+		Replacer.setNewPosition(ref objTransform, newPosition);
 
-	//	if (obj != null)
-	//	{
-	//		Transform objTransform = obj.transform;
+		newPosition.x += objTransform.localScale.x / 2; //Учесть текущий размер
 
-	//		setupObjectTransform(ref objTransform);
-	//		calculateNextCameraPositionToGetObjectFromPool(objTransform);
-	//	}
-	//}
-
-	///// <summary>
-	///// Позиция последнего объекта по оси Х
-	///// </summary>
-	//float lastObjectPositionX = 0;
-
-	///// <summary>
-	///// Установить позицию для objTransform
-	///// </summary>
-	///// <param name="objTransform">Object transform.</param>
-	//void setupObjectTransform(ref Transform objTransform)
-	//{
-	//	Rotator.setRotation(ref objTransform, new Vector3(-90, 0, 0));
-
-	//	var newPosition = new Vector3(lastObjectPositionX, 0, 15);
-	//	lastObjectPositionX += objWidth;
-	//	Replacer.setNewPosition(ref objTransform, newPosition);
-	//}
-
-	///// <summary>
-	///// Вычислить новую позицию камеры, в которой требуется запросить объект из пула
-	///// </summary>
-	///// <param name="objTransform">Object transform.</param>
-	//void calculateNextCameraPositionToGetObjectFromPool(Transform objTransform)
-	//{
-	//	//Рассчет позиций объекта
-	//	float objCenterPosition = objTransform.localPosition.x; //Центр
-	//	float objRightEdgePosition = objCenterPosition + objWidth / 2; //Позиция правого края
-
-	//	cameraPositionToGetObjFromPool = objRightEdgePosition - lengthFromoObjectCenterToIntersection - constDelta;
-	//}
-
-
-	//void calculateNextCameraPositionToGetObjectFromPool(PoolObject obj)
-	//{
-	//	Transform objTransform = obj.transform;
-
-	//	//Рассчет позиций объекта
-	//	float objCenterPosition = objTransform.localPosition.x; //Центр
-	//	float objWidth = obj.GetComponent<MeshFilter>().mesh.bounds.size.x * objTransform.localScale.x; //Ширина
-	//	float objRightEdgePosition = objCenterPosition + objWidth / 2; //Позиция правого края
-
-	//	//Рассчет дистанции от объекта до камеры
-	//	float mainCameraDistance = Mathf.Abs(mainCameraTransfrom.position.z);
-	//	float objDistance = Mathf.Abs(objTransform.position.z);
-	//	float distanceFromCameraToObj = mainCameraDistance + objDistance;
-
-	//	//Рассчет расстояния от позиции камеры до пересечения справа угла обзора и объекта
-	//	float alpha = mainCamera.fieldOfView / 2;
-	//	float lengthFromCameraPositionToIntersection = distanceFromCameraToObj * Mathf.Tan(alpha * Mathf.Deg2Rad);
-
-	//	float mainCameraPosition = mainCameraTransfrom.position.x;
-	//	float intersectionPosition = mainCameraPosition + lengthFromCameraPositionToIntersection;
-
-	//	cameraPositionToGetObjFromPool = objRightEdgePosition - intersectionPosition - (objWidth + 5) / 4;
-
-	//	string debugMessage = "Calculatings:";
-	//	debugMessage += $"\n ObjCenterPosition = {objCenterPosition}";
-	//	debugMessage += $"\n objWidth = {objWidth}";
-	//	debugMessage += $"\n objLeftEdgePosition = {objRightEdgePosition}";
-	//	debugMessage += "\n";
-	//	debugMessage += $"\n mainCameraDistance = {mainCameraDistance}";
-	//	debugMessage += $"\n objDistance = {objDistance}";
-	//	debugMessage += $"\n distanceFromCameraToObj = {distanceFromCameraToObj}";
-	//	debugMessage += "\n";
-	//	debugMessage += $"\n alpha = {alpha}";
-	//	debugMessage += $"\n lengthFromCameraPositionToIntersection = {lengthFromCameraPositionToIntersection}";
-	//	debugMessage += "\n";
-	//	debugMessage += $"\n mainCameraPosition = {mainCameraPosition}";
-	//	debugMessage += $"\n intersectionPosition = {intersectionPosition}";
-	//	debugMessage += "\n";
-	//	debugMessage += $"\n cameraPositionToGetObjFromPool = {cameraPositionToGetObjFromPool}";
-	//	Debug.Log(debugMessage);
-	//}
+		lastObjectPosition = newPosition;
+	}
 }

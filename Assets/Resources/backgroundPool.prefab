@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8204161269766459440}
   - component: {fileID: 8204161269766459447}
   - component: {fileID: 8204161269766459441}
+  - component: {fileID: -7671593646900770144}
   m_Layer: 0
   m_Name: objectsPool
   m_TagString: Untagged
@@ -56,5 +57,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1d69ab9dc9d7e4d88105efa6449934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabName: 
-  objectsCount: 1
+  prefabName: Background
+  objectsCount: 3
+--- !u!114 &-7671593646900770144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204161269766459442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbe215e239913547b608b3e9cd1c0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsAtStartCount: 2
