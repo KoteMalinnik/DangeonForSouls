@@ -46,7 +46,7 @@ public class PlatformController : MonoBehaviour
 	/// </summary>
 	static float lastObjectScaleX = 0;
 
-	void setupScale(Transform objTransform)
+	static void setupScale(Transform objTransform)
 	{
 		var newScale = objTransform.localScale;
 		newScale.x = Random.Range(4, 10);
@@ -63,7 +63,7 @@ public class PlatformController : MonoBehaviour
 	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	void setupPosition(Transform objTransform)
+	static void setupPosition(Transform objTransform)
 	{
 		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
 		var newPosition = lastObjectPosition;

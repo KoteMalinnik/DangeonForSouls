@@ -46,7 +46,7 @@ public class BackgroundController : MonoBehaviour
 	/// <summary>
 	/// Установить вращение Transform
 	/// </summary>
-	void setupRotation(Transform objTransform)
+	static void setupRotation(Transform objTransform)
 	{
 		Rotator.setRotation(objTransform, new Vector3(-90, 0, 0));
 	}
@@ -59,7 +59,7 @@ public class BackgroundController : MonoBehaviour
 	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	void setupPosition(Transform objTransform)
+	static void setupPosition(Transform objTransform)
 	{
 		Replacer.setNewPosition(objTransform, lastObjectPosition);
 		lastObjectPosition.x += objWidth;
