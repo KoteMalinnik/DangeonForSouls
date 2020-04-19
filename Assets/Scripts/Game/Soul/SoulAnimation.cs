@@ -30,14 +30,14 @@ public class SoulAnimation : MonoBehaviour
 	/// </summary>
 	float moveAnimationSpeed = 0.1f;
 
-	float startPositionY;  //начальная позиция объекта по оси Y
+	float startPositionY = 0;  //начальная позиция объекта по оси Y
 	float maxPhase; //максимальная фаза для анимации
 
 	void Update()
 	{
 		//Благодаря случайной фазе объекты двигаются по-разному и имеют разные размеры ореолов
 		halo.range = getNewHaloRange();
-		cachedTransform.localPosition = getNewPosition();
+		cachedTransform.position = getNewPosition();
 	}
 
 	/// <summary>

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-
+/// <summary>
+/// Контроль перемещения объектов Soul
+/// </summary>
 public sealed class SoulsController : ObjectsController
 {
 	/// <summary>
@@ -19,15 +19,16 @@ public sealed class SoulsController : ObjectsController
 		lastObjectPosition.x = platformPosition.x - platformTransform.localScale.x / 2 + 1;
 
 		int objectsCount = (int)platformTransform.localScale.x - 1;
-		getObjects(objectsCount);
+		getObjects(objectsCount, ref lastObjectPosition.x);
 	}
 
-	//new void getObjectFromPool()
-	//{
-	//	var objTransform = base.getObjectFromPool();
-	//	setupPosition(objTransform);
-	//	objTransform.GetComponent<SoulAnimation>().setStartParametrs();
-	//}
+	protected override void setupObject(PoolObject obj)
+	{
+		Transform objTransform = obj.transform;
+
+		setupPosition(objTransform);
+		objTransform.GetComponent<SoulAnimation>().setStartParametrs();
+	}
 
 	/// <summary>
 	/// Установить позицию Transform

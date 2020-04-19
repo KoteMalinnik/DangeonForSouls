@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System;
 
+/// <summary>
+/// Класс контроллеров объектов, которые содержат пул объектов
+/// </summary>
 public abstract class ObjectsController : MonoBehaviour
 {
 	/// <summary>
@@ -13,6 +15,9 @@ public abstract class ObjectsController : MonoBehaviour
 		pool = GetComponent<Pool>();
 	}
 
+	/// <summary>
+	/// Взять objectsCount объектов из пула.
+	/// </summary>
 	protected void getObjects(int objectsCount)
 	{
 		Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
@@ -22,6 +27,21 @@ public abstract class ObjectsController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Взять objectsCount объектов из пула. secondEnumarotor инкрементируется objectsCount раз
+	/// </summary>
+	protected void getObjects(int objectsCount, ref float secondEnumarator)
+	{
+		Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
+		for (; objectsCount > 0; objectsCount--, secondEnumarator++)
+		{
+			getObjectFromPool();
+		}
+	}
+
+	/// <summary>
+	/// Взять объект из пула и настроить его с помощью переопределяемого метода setupObject
+	/// </summary>
 	public void getObjectFromPool()
 	{
 		Debug.Log($"Взять объект из пула {pool.name}");
@@ -31,6 +51,9 @@ public abstract class ObjectsController : MonoBehaviour
 		setupObject(obj);
 	}
 
+	/// <summary>
+	///  Переопределяемый метод для настройки объекта
+	/// </summary>
 	protected virtual void setupObject(PoolObject obj) {}
 
 	/// <summary>
