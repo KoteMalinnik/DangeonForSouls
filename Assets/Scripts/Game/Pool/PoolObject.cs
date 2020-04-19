@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
+using System;
 
 /// <summary>
 /// Перемещение объекта в пул при выходе из зоны видимости камеры
@@ -7,32 +7,30 @@ using UnityEngine.Events;
 public class PoolObject : MonoBehaviour
 {
 	[SerializeField]
-	UnityEvent OnReturningToPoolEvent = null;
+	bool needEventOnReturningToPool = false;
 
 	Pool parentPool = null;
+	ObjectsController objectsController = null;
 
 	public void setParentPool(Pool newParentPool)
 	{
 		if (newParentPool == null) Debug.LogError("Пул не инициализирован!");
 		parentPool = newParentPool;
+
+		objectsController = parentPool.GetComponent<ObjectsController>();
 	}
 
     void OnBecameInvisible()
 	{
-		//Если игра не находится в состоянии Конеца Игры
-		//Если игра не находится в состоянии Пауза
-		if (!Statements.gameOver && !Statements.pause)
+		if (parentPool != null)
 		{
-			if (parentPool != null)
+			//Если игра не находится в состоянии Конеца Игры
+			//Если игра не находится в состоянии Пауза
+			if (!Statements.gameOver && !Statements.pause)
 			{
 				parentPool.addObject(this);
-				if(OnReturningToPoolEvent != null) OnReturningToPoolEvent.Invoke();
+				if(needEventOnReturningToPool) objectsController.getObjectFromPool();
 			}
 		}
-	}
-
-	void OnDestroy()
-	{
-		if (OnReturningToPoolEvent != null) OnReturningToPoolEvent.RemoveAllListeners();
 	}
 }

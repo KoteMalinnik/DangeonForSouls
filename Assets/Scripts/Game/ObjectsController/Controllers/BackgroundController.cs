@@ -3,36 +3,31 @@
 /// <summary>
 /// Контроль перемещения объектов Background
 /// </summary>
-public class BackgroundController : ObjectsController
+public sealed class BackgroundController : ObjectsController
 {
-	/// <summary>
-	/// Ширина объекта
-	/// </summary>
-	static readonly float objWidth = 50;
-
-	public void getObjectFromPool()
+	void Start()
 	{
-		Debug.Log($"Взять объект из пула {pool.name}");
-		var obj = pool.getObject();
+		lastObjectPosition = new Vector3(0, 0, 15);
+		getObjects(pool.getCurrentSize());
+	}
 
-		if (obj == null) return;
-
+	protected override void setupObject(PoolObject obj)
+	{
 		Transform objTransform = obj.transform;
 
 		setupPosition(objTransform);
-
 		Rotator.setRotation(objTransform, new Vector3(-90, 0, 0));
 	}
 
 	/// <summary>
-	/// Позиция последнего объекта по оси Х
+	/// Ширина объекта
 	/// </summary>
-	static Vector3 lastObjectPosition = new Vector3(0, 0, 15);
+	readonly float objWidth = 50;
 
 	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	static void setupPosition(Transform objTransform)
+	protected override void setupPosition(Transform objTransform)
 	{
 		Replacer.setNewPosition(objTransform, lastObjectPosition);
 		lastObjectPosition.x += objWidth;

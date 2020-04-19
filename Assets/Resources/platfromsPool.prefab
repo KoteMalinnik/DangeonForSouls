@@ -71,3 +71,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47623eeff5bf4064489b2a1bffe4ae3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soulsController: {fileID: 4925834275568106133, guid: f6fc0378989b11742bb4a6e052037a69,
+    type: 3}

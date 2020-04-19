@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SoulsController : ObjectsController
+public sealed class SoulsController : ObjectsController
 {
-	protected override void Start() {}
-
 	/// <summary>
-	/// Позиция предыдущего объекта по оси Х
+	/// Позиция платформы
 	/// </summary>
-	static Vector3 lastObjectPosition = Vector3.zero;
-	static Vector3 platformPosition = Vector3.zero;
+	Vector3 platformPosition = Vector3.zero;
 
-	public static void fillObjectWithSouls(Transform platformTransform)
+	public void fillObjectWithSouls(Transform platformTransform)
 	{
 		if (pool == null) return;
 
@@ -22,32 +19,20 @@ public class SoulsController : ObjectsController
 		lastObjectPosition.x = platformPosition.x - platformTransform.localScale.x / 2 + 1;
 
 		int objectsCount = (int)platformTransform.localScale.x - 1;
-
-		Debug.Log($"Взять {objectsCount} объектов из пула SoulsPool");
-		for (; objectsCount > 0; objectsCount--, lastObjectPosition.x++)
-		{
-			getObjectFromPool();
-		}
+		getObjects(objectsCount);
 	}
 
-	static void getObjectFromPool()
-	{
-		Debug.Log($"Взять объект из пула {pool.name}");
-		var obj = pool.getObject();
-
-		if (obj == null) return;
-
-		Transform objTransform = obj.transform;
-
-		setupPosition(objTransform);
-
-		obj.GetComponent<SoulAnimation>().setStartParametrs();
-	}
+	//new void getObjectFromPool()
+	//{
+	//	var objTransform = base.getObjectFromPool();
+	//	setupPosition(objTransform);
+	//	objTransform.GetComponent<SoulAnimation>().setStartParametrs();
+	//}
 
 	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	static void setupPosition(Transform objTransform)
+	protected override void setupPosition(Transform objTransform)
 	{
 		//Выставляем позицию по оси Y так, чтобы душа была на видимой стороне платформы
 		var newPosition = objTransform.localPosition;

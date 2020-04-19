@@ -3,30 +3,31 @@
 /// <summary>
 /// Контроль перемещения объектов Platfrom
 /// </summary>
-public class PlatformController : ObjectsController
+public sealed class PlatformController : ObjectsController
 {
-	public void getObjectFromPool()
+	[SerializeField]
+	SoulsController soulsController = null;
+
+	void Start()
 	{
-		Debug.Log($"Взять объект из пула {pool.name}");
-		var obj = pool.getObject();
-
-		if (obj == null) return;
-
-		Transform objTransform = obj.transform;
-
-		setupPosition(objTransform);
-		setupScale(objTransform);
-
-		//Заполнить платформу объектами Soul
-		SoulsController.fillObjectWithSouls(objTransform);
+		lastObjectPosition = new Vector3(-4, 4, 3);
+		getObjects(pool.getCurrentSize());
 	}
+
+	//public new void getObjectFromPool()
+	//{
+	//	var objTransform = base.getObjectFromPool();
+	//	setupPosition(objTransform);
+	//	setupScale(objTransform);
+	//	soulsController.fillObjectWithSouls(objTransform); //Заполнить платформу объектами Soul
+	//}
 
 	/// <summary>
 	/// Размер последнего объекта по оси Х 
 	/// </summary>
-	static float lastObjectScaleX = 0;
+	float lastObjectScaleX = 0;
 
-	static void setupScale(Transform objTransform)
+	void setupScale(Transform objTransform)
 	{
 		var newScale = objTransform.localScale;
 		newScale.x = Random.Range(4, 10);
@@ -36,14 +37,9 @@ public class PlatformController : ObjectsController
 	}
 
 	/// <summary>
-	/// Позиция последнего объекта по оси Х
-	/// </summary>
-	static Vector3 lastObjectPosition = new Vector3(-4, 4, 3);
-
-	/// <summary>
 	/// Установить позицию Transform
 	/// </summary>
-	static void setupPosition(Transform objTransform)
+	protected override void setupPosition(Transform objTransform)
 	{
 		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
 		var newPosition = lastObjectPosition;
@@ -55,7 +51,6 @@ public class PlatformController : ObjectsController
 		Replacer.setNewPosition(objTransform, newPosition);
 
 		newPosition.x += objTransform.localScale.x / 2; //Учесть текущий размер
-
 		lastObjectPosition = newPosition;
 	}
 }
