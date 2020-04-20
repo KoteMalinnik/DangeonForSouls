@@ -10,7 +10,7 @@ public sealed class PlatformController : ObjectsController
 
 	void Start()
 	{
-		lastObjectPosition = new Vector3(-4, 4, 3);
+		lastObjectPosition = new Vector3(-4, 5, 0);
 		getObjects(pool.getCurrentSize());
 	}
 
@@ -43,9 +43,8 @@ public sealed class PlatformController : ObjectsController
 	{
 		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
 		var newPosition = lastObjectPosition;
-		if (lastObjectPosition.y < 0) newPosition.y = 4;
-		if (lastObjectPosition.y > 0) newPosition.y = -4;
 
+		newPosition.y = -lastObjectPosition.y;
 		newPosition.x += lastObjectScaleX / 2; //Учесть предыдущий размер
 
 		objTransform.localPosition = newPosition;

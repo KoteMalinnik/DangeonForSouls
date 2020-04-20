@@ -16,6 +16,8 @@ public class SoulAnimation : MonoBehaviour
 	{
 		halo = GetComponentInChildren<Light>();
 		cachedTransform = transform;
+
+		setStartParametrs();
 	}
 
 	[SerializeField, Tooltip("Скорость изменения размера ореола (halo)")]

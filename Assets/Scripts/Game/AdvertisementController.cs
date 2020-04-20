@@ -35,9 +35,11 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 
 	void Start()
 	{
+		Debug.LogError("Henko");
+
 		if(pauseMenuGUI == null)
 		{
-			Debug.LogError("Пустой объект PauseMenuGUI");
+			Debug.Log("Пустой объект PauseMenuGUI");
 			pauseMenuGUI = FindObjectOfType<PauseMenuGUI>();
 		}
 

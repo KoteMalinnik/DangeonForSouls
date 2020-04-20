@@ -44,7 +44,7 @@ public abstract class ObjectsController : ControllerSetuper
 	/// </summary>
 	public void getObjectFromPool()
 	{
-		Debug.Log($"Взять объект из пула {pool.name}");
+		//Debug.Log($"Взять объект из пула {pool.name}");
 		var obj = pool.getObject();
 
 		if (obj == null) return;

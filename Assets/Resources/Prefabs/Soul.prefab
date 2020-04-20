@@ -42,7 +42,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.20058592, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 0.8
   m_SpotAngle: 30
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 8907493188454803649}
   - component: {fileID: 8336647390700040976}
   - component: {fileID: -807630090232297665}
+  - component: {fileID: 4891017814133143419}
   m_Layer: 8
   m_Name: Soul
   m_TagString: Untagged
@@ -200,9 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7357828e0df53f4295c3c3fcc94e9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnReturningToPoolEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  needEventOnReturningToPool: 0
 --- !u!114 &-807630090232297665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +216,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   haloRangeAnimationSpeed: 0.1
   moveAnimationSpeed: 0.1
+--- !u!114 &4891017814133143419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907493188454803648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7def5f9093af55488fdd458303431ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

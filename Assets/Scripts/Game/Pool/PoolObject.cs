@@ -22,15 +22,20 @@ public class PoolObject : MonoBehaviour
 
     void OnBecameInvisible()
 	{
+		//Если игра не находится в состоянии Конеца Игры
+		//Если игра не находится в состоянии Пауза
+		if (!Statements.gameOver && !Statements.pause) returnToPool();
+	}
+
+	/// <summary>
+	/// Вернуть в пул
+	/// </summary>
+	public void returnToPool()
+	{
 		if (parentPool != null)
 		{
-			//Если игра не находится в состоянии Конеца Игры
-			//Если игра не находится в состоянии Пауза
-			if (!Statements.gameOver && !Statements.pause)
-			{
-				parentPool.addObject(this);
-				if(needEventOnReturningToPool) objectsController.getObjectFromPool();
-			}
+			parentPool.addObject(this);
+			if (needEventOnReturningToPool) objectsController.getObjectFromPool();
 		}
 	}
 }

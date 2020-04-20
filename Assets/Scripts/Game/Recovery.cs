@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //!!! Рефакторить
-public class Recovery : MonoBehaviour
+public static class Recovery
 {
 	/// <summary>
 	/// True, если количество собранных душ превышает цену восстановления
@@ -38,29 +37,29 @@ public class Recovery : MonoBehaviour
 	public static void startRecovery()
 	{
 		Debug.Log("Запуск восстановления");
-		Statements.setGameOver(false);
 	}
 
+	///// <summary>
+	///// Переместить Player на центр и изменить состояние gameOver на False
+	///// </summary>
+	//IEnumerator recovery()
+	//{
+	//	Transform cachedTransform = transform;
 
-//	//бонус-продолжение. Возрождение. Отключение панели паузы и выставление позиции по центру
-//	public IEnumerator gameOverBoost()
-//	{
-//		isMoving = true;
-//		Vector3 pos = transform.position;
+	//	var position = cachedTransform.position;
 
-//		while (Mathf.Abs(pos.y) > 0.01) 
-//		{
-//			pos = Vector3.Lerp(transform.position, new Vector3(pos.x, 0, 0), verticalSpeed*Time.deltaTime);
+	//	while (Mathf.Abs(position.y) > 0.01) 
+	//	{
+	//		//position = Vector3.Lerp(transform.position, new Vector3(position.x, 0, 0), verticalSpeed*Time.deltaTime);
 
-//			transform.position = pos;
+	//		transform.position = position;
 
-//			yield return new WaitForEndOfFrame();
-//		}
+	//		yield return new WaitForEndOfFrame();
+	//	}
 
-//		transform.position = new Vector3(pos.x, 0, 0);
-//		isMoving = false;
+	//	transform.position = new Vector3(position.x, 0, 0);
 
-//		gm.p_gui.continueOrRestartFunc();
-//		yield return null;
-//	}
+	//	Statements.setGameOver(false);
+	//	yield return null;
+	//}
 }

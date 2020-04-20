@@ -2,7 +2,9 @@
 using UnityEngine;
 
 //!!! Рефакторить
-
+[RequireComponent(typeof(GameOverStateChecker))]
+[RequireComponent(typeof(GroundCollisionProcessing))]
+[RequireComponent(typeof(InputController))]
 public class PlayerControll : MonoBehaviour
 {
 //	GameManager gm;
@@ -173,37 +175,4 @@ public class PlayerControll : MonoBehaviour
 //		//Debug.Log("End of sphere moving");
 //		yield return null;
 //	}
-
-//	void OnTriggerEnter(Collider coll)
-//	{
-//		if (coll.gameObject.tag == groundTag) //если коснулись ground
-//		{
-//			isGrounded = true;
-//			//Debug.Log("This is GROUND. Good!");
-//		}
-//		else if (coll.gameObject.tag == "soul") //если коснулись soul
-//		{
-//			//подбираем душу. Рассчитываем счетчик и воспроизводим звук. Уничтожаем душу
-//			gm.colectedSouls++;
-//			gm.p_gui.updateSoulCounter(gm.colectedSouls);
-//			if (gm.sound) sac.playSoulSound();
-//			Destroy(coll.gameObject);
-//		}
-//		else //если коснулись hole
-//		{
-//			//Debug.Log("This is HOLE. Game Over.");
-//			gameOver = true; //игрок проиграл
-//			gameStarted = false; //игра закончилась
-
-//			if (gm.sound) sac.playGameOverSound();
-//			//выставляем лучший счет, если он обновился
-//			if (score > gm.bestScore) gm.bestScore = (int)score;
-
-//			gm.saveInt();
-
-//			//показываем панель паузы
-//			gm.p_gui.pauseFunc();
-//		}
-//	}
-
 }
