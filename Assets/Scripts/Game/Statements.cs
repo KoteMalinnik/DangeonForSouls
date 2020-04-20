@@ -33,10 +33,19 @@ public static class Statements
 	{
 		gameOver = newGameOver;
 		Debug.Log($"Конец игры: {gameOver}");
+	}
 
-		if(gameOver)
-		{
-			AudioManager.playGameOverSound();
-		}
+	/// <summary>
+	/// Состояние касания о платформу
+	/// </summary>
+	public static bool grounded { get; private set; } = false;
+
+	/// <summary>
+	/// Устанавливает состояние паузы как newPause
+	/// </summary>
+	public static void setGrounded(bool newGrounded)
+	{
+		grounded = newGrounded;
+		Debug.Log($"Касание платформы: {grounded}");
 	}
 }

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Проверка на конец игры
+/// </summary>
 public class GameOverStateChecker : MonoBehaviour
 {
 	Transform cachedTransform = null;
@@ -12,7 +15,12 @@ public class GameOverStateChecker : MonoBehaviour
     void Update()
     {
 		if(!Statements.gameOver && !Statements.pause)
+		{
 			if (Mathf.Abs(cachedTransform.position.y) > 5)
+			{
 				Statements.setGameOver(true);
+				AudioManager.playGameOverSound();
+			}
+		}
     }
 }
