@@ -92,4 +92,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7357828e0df53f4295c3c3fcc94e9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needEventOnReturningToPool: 1
+  reuseObjectOnInvisible: 1

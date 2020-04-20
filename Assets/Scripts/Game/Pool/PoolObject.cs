@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Перемещение объекта в пул при выходе из зоны видимости камеры
@@ -6,7 +8,7 @@
 public class PoolObject : MonoBehaviour
 {
 	[SerializeField]
-	bool needEventOnReturningToPool = false;
+	bool reuseObjectOnInvisible = false;
 
 	Pool parentPool = null;
 	ObjectsController objectsController = null;
@@ -26,15 +28,18 @@ public class PoolObject : MonoBehaviour
 		if (!Statements.gameOver && !Statements.pause) returnToPool();
 	}
 
-	/// <summary>
-	/// Вернуть в пул
-	/// </summary>
 	public void returnToPool()
 	{
-		if (parentPool != null)
+		if (reuseObjectOnInvisible) 
 		{
-			parentPool.addObject(this);
-			if (needEventOnReturningToPool) objectsController.getObjectFromPool();
+			objectsController.useObject(this);
+			return;
 		}
+		parentPool.addObject(this);
+	}
+
+	void OnDestoy()
+	{
+		parentPool.removeObject(this);
 	}
 }

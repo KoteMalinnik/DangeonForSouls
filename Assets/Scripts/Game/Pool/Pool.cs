@@ -50,17 +50,16 @@ public class Pool : MonoBehaviour
 	/// </summary>
 	public void addObject(PoolObject newPoolObject)
 	{
-		if(!list.Contains(newPoolObject))
+		if (!list.Contains(newPoolObject))
 		{
-			if(getCurrentSize() >= maxSize)
+			if (getCurrentSize() >= maxSize)
 			{
 				Debug.Log("<color=yellow>Пул объектов полон. нельзя добавить новый объект</color>");
 				return;
 			}
 
-			list.Add(newPoolObject);
-
 			newPoolObject.gameObject.SetActive(false);
+			list.Add(newPoolObject);
 
 			//Debug.Log($"<color=green>Объект (ID {newPoolObject.name}) добавлен в пул.</color>");
 
@@ -91,7 +90,7 @@ public class Pool : MonoBehaviour
 	/// </summary>
 	public PoolObject getObject()
 	{
-		if(getCurrentSize() == 0)
+		if (getCurrentSize() == 0)
 		{
 			Debug.Log("<color=red>Пул объектов пуст</color>");
 			return null;
@@ -99,10 +98,10 @@ public class Pool : MonoBehaviour
 
 		var objectToReturn = list[0];
 		removeObject(objectToReturn);
-
+		
 		objectToReturn.gameObject.SetActive(true);
 
 		//Debug.Log($"<color=green>Объект (ID {objectToReturn.name}) выделен</color>");
-		return objectToReturn;
+		return objectToReturn;		
 	}
 }

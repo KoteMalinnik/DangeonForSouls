@@ -50,4 +50,12 @@ public abstract class ObjectsController : ControllerSetuper
 		if (obj == null) return;
 		setupObject(obj);
 	}
+
+	/// <summary>
+	/// Использовать объект очереди без перемещения в очередь
+	/// </summary>
+	public void useObject(PoolObject obj)
+	{
+		setupObject(obj);
+	}
 }
