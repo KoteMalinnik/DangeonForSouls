@@ -8,10 +8,13 @@ public sealed class PlatformController : ObjectsController
 	[SerializeField]
 	SoulsController soulsController = null;
 
+	[SerializeField, Range(1, 10)]
+	int objectsAtStartCount = 5;
+
 	void Start()
 	{
 		lastObjectPosition = new Vector3(-4, 5, 0);
-		getObjects(pool.getCurrentSize());
+		getObjects(objectsAtStartCount);
 	}
 
 	protected override void setupObject(PoolObject obj)

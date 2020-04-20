@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: Platform
-  objectsCount: 5
+  objectsCount: 10
 --- !u!114 &3946497511949115675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soulsController: {fileID: 6206484829458671810}
+  objectsAtStartCount: 5
 --- !u!1 &4957447103520536802
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: Background
-  objectsCount: 2
+  objectsCount: 4
 --- !u!114 &573310669093493754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,3 +248,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbe215e239913547b608b3e9cd1c0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsAtStartCount: 2

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 /// <summary>
 /// Перемещение объекта в пул при выходе из зоны видимости камеры
