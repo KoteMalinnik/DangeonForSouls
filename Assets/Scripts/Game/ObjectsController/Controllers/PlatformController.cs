@@ -30,7 +30,7 @@ public sealed class PlatformController : ObjectsController
 	/// </summary>
 	float lastObjectScaleX = 0;
 
-	void setupScale(Transform objTransform)
+	protected override void setupScale(Transform objTransform)
 	{
 		var newScale = objTransform.localScale;
 		newScale.x = Random.Range(4, 10);
@@ -39,9 +39,6 @@ public sealed class PlatformController : ObjectsController
 		lastObjectScaleX = newScale.x;
 	}
 
-	/// <summary>
-	/// Установить позицию Transform
-	/// </summary>
 	protected override void setupPosition(Transform objTransform)
 	{
 		//Выставляем противоположную позицию по оси Y, чтобы платформа была на другой стороне
@@ -51,7 +48,7 @@ public sealed class PlatformController : ObjectsController
 
 		newPosition.x += lastObjectScaleX / 2; //Учесть предыдущий размер
 
-		Replacer.setNewPosition(objTransform, newPosition);
+		objTransform.localPosition = newPosition;
 
 		newPosition.x += objTransform.localScale.x / 2; //Учесть текущий размер
 		lastObjectPosition = newPosition;

@@ -30,9 +30,6 @@ public sealed class SoulsController : ObjectsController
 		objTransform.GetComponent<SoulAnimation>().setStartParametrs();
 	}
 
-	/// <summary>
-	/// Установить позицию Transform
-	/// </summary>
 	protected override void setupPosition(Transform objTransform)
 	{
 		//Выставляем позицию по оси Y так, чтобы душа была на видимой стороне платформы
@@ -42,6 +39,6 @@ public sealed class SoulsController : ObjectsController
 		newPosition.y = platformPosition.y > 0 ? platformPosition.y - 1 : platformPosition.y + 1;
 		newPosition.z = platformPosition.z;
 
-		Replacer.setNewPosition(objTransform, newPosition);
+		objTransform.localPosition = newPosition;
 	}
 }

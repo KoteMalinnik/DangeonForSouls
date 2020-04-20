@@ -16,7 +16,7 @@ public sealed class BackgroundController : ObjectsController
 		Transform objTransform = obj.transform;
 
 		setupPosition(objTransform);
-		Rotator.setRotation(objTransform, new Vector3(-90, 0, 0));
+		setupRotation(objTransform);
 	}
 
 	/// <summary>
@@ -24,12 +24,14 @@ public sealed class BackgroundController : ObjectsController
 	/// </summary>
 	readonly float objWidth = 50;
 
-	/// <summary>
-	/// Установить позицию Transform
-	/// </summary>
 	protected override void setupPosition(Transform objTransform)
 	{
-		Replacer.setNewPosition(objTransform, lastObjectPosition);
+		objTransform.localPosition = lastObjectPosition;
 		lastObjectPosition.x += objWidth;
+	}
+
+	protected override void setupRotation(Transform objTransform)
+	{
+		objTransform.localEulerAngles = new Vector3(-90, 0, 0);
 	}
 }

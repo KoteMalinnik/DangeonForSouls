@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс контроллеров объектов, которые содержат пул объектов
 /// </summary>
-public abstract class ObjectsController : MonoBehaviour
+public abstract class ObjectsController : ControllerSetuper
 {
 	/// <summary>
 	/// Контролируемый пул объектов
@@ -50,19 +50,4 @@ public abstract class ObjectsController : MonoBehaviour
 		if (obj == null) return;
 		setupObject(obj);
 	}
-
-	/// <summary>
-	///  Переопределяемый метод для настройки объекта
-	/// </summary>
-	protected virtual void setupObject(PoolObject obj) {}
-
-	/// <summary>
-	/// Позиция предыдущего объекта по оси Х
-	/// </summary>
-	protected Vector3 lastObjectPosition = Vector3.zero;
-
-	/// <summary>
-	/// Установить позицию Transform
-	/// </summary>
-	protected virtual void setupPosition(Transform objTransform) {}
 }
