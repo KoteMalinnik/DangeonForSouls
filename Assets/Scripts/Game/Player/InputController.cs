@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Управление
+/// Управление Player
 /// </summary>
 public class InputController : MonoBehaviour
 {
@@ -21,8 +19,7 @@ public class InputController : MonoBehaviour
 
 		cachedTransform = transform;
 
-		//обязательно устанавливаем состояние первого свайпа в false
-		Statements.setFirstSwipe(false);
+
 	}
 
 	void Update()

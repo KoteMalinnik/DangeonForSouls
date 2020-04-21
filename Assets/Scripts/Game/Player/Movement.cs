@@ -7,14 +7,112 @@ using UnityEngine;
 /// </summary>
 public class Movement : MonoBehaviour
 {
-	//	public float animSpeed = 3;
+		public float animSpeed = 3;
 
-	//	[Header("Speed Parametrs")]
-	//	public float verticalSpeed = 1;
-	//	public float horizontalSpeed = 1;
-	//	public float speedCoefficient = 0;
-	//	public float maxSpeedBoost = 10;
-	//	float speedBoost = 0;
+		[Header("Speed Parametrs")]
+		public float verticalSpeed = 1;
+		public float horizontalSpeed = 1;
+		public float speedCoefficient = 0;
+		public float maxSpeedBoost = 10;
+		float speedBoost = 0;
+
+
+	/// <summary>
+	/// Кешированный Transform
+	/// </summary>
+	Transform cachedTransform = null;
+
+	void Awake()
+	{
+		cachedTransform = transform;
+
+		//обязательно устанавливаем состояние касания платформы в false
+		Statements.setGrounded(false);
+	}
+
+	void horizontalMovement()
+	{
+		//горизонтальное перемещение
+		Vector3 pos = transform.position;
+		pos = new Vector3(pos.x + (horizontalSpeed + speedCoefficient * speedBoost) * Time.deltaTime, pos.y, pos.z);
+		transform.position = pos;
+	}
+
+		void Update()
+		{
+			if (!gm.p_gui.isPause && !gameOver)
+			{
+
+
+				
+
+				//если игрок не перемещается вертикально
+				if (!isMoving)
+				{
+	#if !UNITY_EDITOR
+					//управление свайпом
+					if(Input.touchCount>0)
+					{
+						if (Input.GetTouch(0).phase == TouchPhase.Began)
+						{
+							mStartPosition = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+						}
+
+						if (Input.GetTouch(0).phase == TouchPhase.Moved)
+						{
+							Vector2 endPosition = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+							Vector2 swipeVector = endPosition - mStartPosition;
+
+							if (swipeVector.magnitude > mMinSwipeDist)
+							{
+								swipeVector.Normalize();
+
+								float angleOfSwipe = Vector2.Dot(swipeVector, mYAxis);
+								angleOfSwipe = Mathf.Acos(angleOfSwipe) * Mathf.Rad2Deg;
+
+								if (angleOfSwipe < mAngleRange && transform.position.y <= 0)
+								{
+									if (!gameStarted) gameStarted = true;
+
+									isGrounded = false;
+									OnSwipeTop();
+								}
+								else if ((180.0f - angleOfSwipe) < mAngleRange && transform.position.y >= 0)
+								{
+									if (!gameStarted) gameStarted = true;
+
+									isGrounded = false;
+									OnSwipeBottom();
+								}
+							}
+						}
+					}
+	#elif UNITY_EDITOR
+					//управление из редактора
+					if(Input.GetKeyDown(KeyCode.UpArrow) && transform.position.y <= 0)
+					{
+						if (!gameStarted) gameStarted = true;
+
+						isGrounded = false;
+						OnSwipeTop();
+					}
+
+					if(Input.GetKeyDown(KeyCode.DownArrow) && transform.position.y >= 0)
+					{
+						if (!gameStarted) gameStarted = true;
+
+						isGrounded = false;
+						OnSwipeBottom();
+					}
+
+					if(Input.GetKeyDown(KeyCode.Escape))
+					{
+						gm.p_gui.pauseFunc();
+					}
+	#endif
+				}
+			}
+		}
 
 	//   //корутина вертикального движения. direction = 1 - вверх, -1 - вниз
 	//IEnumerator moveSphere(int direction)
