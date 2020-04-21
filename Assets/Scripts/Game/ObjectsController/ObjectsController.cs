@@ -20,7 +20,7 @@ public abstract class ObjectsController : ControllerSetuper
 	/// </summary>
 	protected void getObjects(int objectsCount)
 	{
-		Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
+		//Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
 		for (; objectsCount > 0; objectsCount--)
 		{
 			getObjectFromPool();
@@ -32,7 +32,7 @@ public abstract class ObjectsController : ControllerSetuper
 	/// </summary>
 	protected void getObjects(int objectsCount, ref float secondEnumarator)
 	{
-		Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
+		//Debug.Log($"Взять {objectsCount} объектов из пула {pool.name}");
 		for (; objectsCount > 0; objectsCount--, secondEnumarator++)
 		{
 			getObjectFromPool();

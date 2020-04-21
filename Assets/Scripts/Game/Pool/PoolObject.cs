@@ -30,7 +30,11 @@ public class PoolObject : MonoBehaviour
 
 	public void returnToPool()
 	{
-		if (parentPool == null) return;
+		if (parentPool == null)
+		{
+			Debug.LogWarning("Родительский пул пуст");
+			return;
+		}
 
 		if (reuseObjectOnInvisible) 
 		{

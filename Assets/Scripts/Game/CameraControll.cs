@@ -8,11 +8,26 @@ public class CameraControll : MonoBehaviour
 	/// </summary>
 	GameObject targetObject = null;
 
-	[SerializeField, Tooltip("Плавность следования камеры за целью")]
+
+	/// <summary>
+	/// Начальная дистанция (transform.position.z) камеры до цели
+	/// </summary>
+	const float startDistance = -5;
+
+	/// <summary>
+	/// Конечная дистанция (transform.position.z) камеры до цели
+	/// </summary>
+	const float endDistance = -13;
+
+	/// <summary>
+	/// Смещение камеры относительно цели
+	/// </summary>
+	const float offset = 6;
+
 	/// <summary>
 	/// Плавность следования камеры за целью
 	/// </summary>
-	float smooth = 3;
+	const float smooth = 3;
 
 
 	/// <summary>
@@ -20,44 +35,34 @@ public class CameraControll : MonoBehaviour
 	/// </summary>
 	Vector3 startPosition;
 
-	[SerializeField, Tooltip("Начальная дистанция (transform.position.z) камеры до цели")]
-	/// <summary>
-	/// Начальная дистанция (transform.position.z) камеры до цели
-	/// </summary>
-	float startDistance = -5;
-
-	[SerializeField, Tooltip("Конечная дистанция (transform.position.z) камеры до цели")]
-	/// <summary>
-	/// Конечная дистанция (transform.position.z) камеры до цели
-	/// </summary>
-	float endDistance = -13;
-
-	[SerializeField, Tooltip("Смещение камеры относительно цели")]
-	/// <summary>
-	/// Смещение камеры относительно цели
-	/// </summary>
-	float offset = 6;
-
 	Transform cachedTransform = null;
+	Transform targetTransform = null;
 
 	void Awake()
 	{
 		cachedTransform = transform;
+		targetTransform = targetObject.transform;
 	}
 
 	void Start()
 	{
 		//выставляем камеру на начальную позицию
-		startPosition = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, startDistance);
-		cachedTransform.position = startPosition;
+		startPosition = targetTransform.localPosition;
+		startPosition.z = startDistance;
+
+		cachedTransform.localPosition = startPosition;
 	}
 
+	Vector3 newPosition = Vector3.zero;
 	void Update()
 	{
-		var newPotition = new Vector3(targetObject.transform.position.x + offset, 0, endDistance);
+		newPosition.x = targetTransform.localPosition.x + offset;
+		newPosition.z = endDistance;
+
 		//С помощью Lerp камера плавно следует за объектом
-		cachedTransform.position = Vector3.Lerp(startPosition, newPotition, smooth * Time.deltaTime);
+		cachedTransform.localPosition = Vector3.Lerp(startPosition, newPosition, smooth * Time.deltaTime);
+
 		//Обновляем значение начальной позиции для последующего Lerp-a
-		startPosition = cachedTransform.position;
+		startPosition = cachedTransform.localPosition;
 	}
 }

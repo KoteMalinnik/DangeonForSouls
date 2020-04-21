@@ -26,7 +26,7 @@ public class ScoreEnumerator : MonoBehaviour
 	/// </summary>
 	void calculateScore()
 	{
-		if (!Statements.firstSwipe) return;
+		if (Movement.verticalDirection == 0) return; //verticalDirection не равно 0 только после какого-либо касания
 
 		//считаем очки, если игрок начал управлять сферой
 		score += Time.deltaTime * scoreCoefficient;

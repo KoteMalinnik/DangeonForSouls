@@ -14,7 +14,6 @@ public class CollisionWithPlayerProcessing : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
-			Debug.Log("Касание игрока");
 			ValuesController.incrementСolectedSoulsValue();
 			AudioManager.playCollectingSoulSound();
 			poolObject.returnToPool();

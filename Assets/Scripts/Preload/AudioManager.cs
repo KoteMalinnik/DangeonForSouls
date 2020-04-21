@@ -100,4 +100,9 @@ public class AudioManager : MonoBehaviour
 	{
 		if (collectingSoulSoundSource != null && allowAudio) collectingSoulSoundSource.Play();
 	}
+
+	void OnApplicationQuit()
+	{
+		SerializeParametrs.saveAllParametrs();
+	}
 }

@@ -18,8 +18,6 @@ public class InputController : MonoBehaviour
 		Regular.checkObject(ref pauseMenuGUI);
 
 		cachedTransform = transform;
-
-
 	}
 
 	void Update()
@@ -75,7 +73,7 @@ public class InputController : MonoBehaviour
 	/// </summary>
 	void unityEditorInput()
 	{
-		if(Statements.grounded || !Statements.firstSwipe)
+		if(Statements.grounded || Movement.verticalDirection == 0) //verticalDirection не равно 0 только после какого-либо касания
 		{
 			if (Input.GetKeyDown(KeyCode.W)) OnSwipeTop();
 			if (Input.GetKeyDown(KeyCode.S)) OnSwipeBottom();
@@ -93,7 +91,7 @@ public class InputController : MonoBehaviour
 		if (cachedTransform.localPosition.y > 0) return;
 
 		Debug.Log("Свайп вверх");
-		checkFirstSwipeAndSetIt();
+		Movement.setVerticalDirection(1);
 	}
 
 	/// <summary>
@@ -104,14 +102,6 @@ public class InputController : MonoBehaviour
 		if (cachedTransform.localPosition.y < 0) return;
 
 		Debug.Log("Свайп вниз");
-		checkFirstSwipeAndSetIt();
-	}
-
-	/// <summary>
-	/// Установить состояние firstSwipe, если требуется
-	/// </summary>
-	void checkFirstSwipeAndSetIt()
-	{
-		if (!Statements.firstSwipe) Statements.setFirstSwipe(true);
+		Movement.setVerticalDirection(-1);
 	}
 }

@@ -96,9 +96,4 @@ public class SerializeParametrs : MonoBehaviour
 		saveParametr(key_collectedSoulsValue, ValuesController.colectedSoulsValue);
 		saveParametr(key_recoveryCostValue, ValuesController.recoveryCostValue);
 	}
-
-	void OnApplicationQuit()
-	{
-		saveAllParametrs();
-	}
 }

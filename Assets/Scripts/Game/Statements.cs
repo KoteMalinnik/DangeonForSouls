@@ -49,19 +49,4 @@ public static class Statements
 		grounded = state;
 		Debug.Log($"Касание платформы: {grounded}");
 	}
-
-
-	/// <summary>
-	/// Состояние первого свайпа. False, если не было первого свайпа
-	/// </summary>
-	public static bool firstSwipe { get; private set; } = false;
-
-	/// <summary>
-	/// Установить состояние первого свайпа
-	/// </summary>
-	public static void setFirstSwipe(bool state)
-	{
-		firstSwipe = state;
-		Debug.Log($"Первый свайп: {firstSwipe}");
-	}
 }
