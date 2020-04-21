@@ -91,7 +91,7 @@ public class SerializeParametrs : MonoBehaviour
 	{
 		Debug.Log("Сохранение параметров в PlayerPrefs");
 
-		saveParametr(key_audioStatement, AudioManager.audioStatement);
+		saveParametr(key_audioStatement, AudioManager.allowAudio);
 		saveParametr(key_bestScoreValue, ValuesController.bestScoreValue);
 		saveParametr(key_collectedSoulsValue, ValuesController.colectedSoulsValue);
 		saveParametr(key_recoveryCostValue, ValuesController.recoveryCostValue);

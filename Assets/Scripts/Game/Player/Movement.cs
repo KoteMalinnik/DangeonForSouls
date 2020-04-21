@@ -7,9 +7,16 @@ using UnityEngine;
 /// </summary>
 public class Movement : MonoBehaviour
 {
+	//	public float animSpeed = 3;
 
+	//	[Header("Speed Parametrs")]
+	//	public float verticalSpeed = 1;
+	//	public float horizontalSpeed = 1;
+	//	public float speedCoefficient = 0;
+	//	public float maxSpeedBoost = 10;
+	//	float speedBoost = 0;
 
- //   //корутина вертикального движения. direction = 1 - вверх, -1 - вниз
+	//   //корутина вертикального движения. direction = 1 - вверх, -1 - вниз
 	//IEnumerator moveSphere(int direction)
 	//{
 	//	isMoving = true; //выставление переменной, которая блокирует управление вертикальным перемещением

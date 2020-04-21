@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(GameOverStateChecker))]
 [RequireComponent(typeof(GroundCollisionProcessing))]
 [RequireComponent(typeof(InputController))]
+[RequireComponent(typeof(ScoreEnumerator))]
 public class PlayerControll : MonoBehaviour
 {
 

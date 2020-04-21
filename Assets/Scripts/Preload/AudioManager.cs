@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
 	/// <summary>
 	/// Состояние звука. True, если звук вкл., в противном случае false
 	/// </summary>
-	public static bool audioStatement { get; private set; } = true;
+	public static bool allowAudio { get; private set; } = true;
 
 	/// <summary>
 	/// Установка состояния звука
@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
 	public static void setAudioStatement(bool newAudioStatement)
 	{
 		Debug.Log($"Звук: {newAudioStatement}");
-		audioStatement = newAudioStatement;
+		allowAudio = newAudioStatement;
 
 		if (mainThemeMusicSource != null) switchMusic();
 	}
@@ -76,7 +76,7 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	static void switchMusic()
 	{
-		if(audioStatement)
+		if(allowAudio)
 		{
 			mainThemeMusicSource.Play();
 			return;
@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	public static void playGameOverSound()
 	{
-		if (gameOverSoundSource != null && audioStatement) gameOverSoundSource.Play();
+		if (gameOverSoundSource != null && allowAudio) gameOverSoundSource.Play();
 	}
 
 	/// <summary>
@@ -98,6 +98,6 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	public static void playCollectingSoulSound()
 	{
-		if (collectingSoulSoundSource != null && audioStatement) collectingSoulSoundSource.Play();
+		if (collectingSoulSoundSource != null && allowAudio) collectingSoulSoundSource.Play();
 	}
 }

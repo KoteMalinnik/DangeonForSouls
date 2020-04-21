@@ -9,7 +9,7 @@ public abstract class baseGUI : MonoBehaviour
 	protected void presetGUI()
 	{
 		bestScoreValue.text = $"{ValuesController.bestScoreValue} m";
-		soundStatement.isOn = AudioManager.audioStatement;
+		soundStatement.isOn = AudioManager.allowAudio;
 	}
 
 	[SerializeField]

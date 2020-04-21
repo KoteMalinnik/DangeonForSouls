@@ -1,39 +1,40 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Контроль состояний игрового процесса
+/// Состояния игрового процесса
 /// </summary>
 public static class Statements
 {
     /// <summary>
-	/// Состояние паузы игрового процесса
+	/// Состояние паузы
 	/// </summary>
 	public static bool pause { get; private set; } = false;
 
 	/// <summary>
-	/// Устанавливает состояние паузы как newPause
+	/// Установить состояние паузы
 	/// </summary>
-	public static void setPause(bool newPause)
+	public static void setPause(bool state)
 	{
-		pause = newPause;
+		pause = state;
 		Debug.Log($"Пауза: {pause}");
 	}
 
 
 	/// <summary>
-	/// Состояние конца игры. True, если Player проиграл
+	/// Состояние конца игры
 	/// </summary>
 	public static bool gameOver { get; private set; } = false;
 
 	/// <summary>
-	/// Устанавливает состояние проигрыша как newGameOver
+	/// Установить состояние конца игры
 	/// </summary>
 	/// <returns><c>true</c>, if pause statement was set, <c>false</c> otherwise.</returns>
-	public static void setGameOver(bool newGameOver)
+	public static void setGameOver(bool state)
 	{
-		gameOver = newGameOver;
+		gameOver = state;
 		Debug.Log($"Конец игры: {gameOver}");
 	}
+
 
 	/// <summary>
 	/// Состояние касания о платформу
@@ -41,11 +42,26 @@ public static class Statements
 	public static bool grounded { get; private set; } = false;
 
 	/// <summary>
-	/// Устанавливает состояние паузы как newPause
+	/// Установить состояние паузы
 	/// </summary>
-	public static void setGrounded(bool newGrounded)
+	public static void setGrounded(bool state)
 	{
-		grounded = newGrounded;
+		grounded = state;
 		Debug.Log($"Касание платформы: {grounded}");
+	}
+
+
+	/// <summary>
+	/// Состояние первого свайпа. False, если не было первого свайпа
+	/// </summary>
+	public static bool firstSwipe { get; private set; } = false;
+
+	/// <summary>
+	/// Установить состояние первого свайпа
+	/// </summary>
+	public static void setFirstSwipe(bool state)
+	{
+		firstSwipe = state;
+		Debug.Log($"Первый свайп: {firstSwipe}");
 	}
 }

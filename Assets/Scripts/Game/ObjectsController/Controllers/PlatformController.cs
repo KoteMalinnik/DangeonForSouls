@@ -11,6 +11,12 @@ public sealed class PlatformController : ObjectsController
 	[SerializeField, Range(1, 10)]
 	int objectsAtStartCount = 5;
 
+	new void Awake()
+	{
+		Regular.checkObject(ref soulsController);
+		base.Awake();
+	}
+
 	void Start()
 	{
 		lastObjectPosition = new Vector3(-4, 5, 0);

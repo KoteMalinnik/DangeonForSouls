@@ -35,11 +35,7 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 
 	void Start()
 	{
-		if(pauseMenuGUI == null)
-		{
-			Debug.Log("Пустой объект PauseMenuGUI");
-			pauseMenuGUI = FindObjectOfType<PauseMenuGUI>();
-		}
+		Regular.checkObject(ref pauseMenuGUI);
 
 		if(allowAds)
 		{
