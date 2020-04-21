@@ -40,7 +40,6 @@ public static class ValuesController
 		setBestScoreValue(incrementedValue);
 	}
 
-
 	/// <summary>
 	/// Установка количества собранных душ
 	/// </summary>
@@ -49,7 +48,7 @@ public static class ValuesController
 		colectedSoulsValue = newСolectedSoulsValue;
 		RuntimeGUI.updateCollectedSoulsValue(colectedSoulsValue);
 
-		//Debug.Log($"Установка значения colectedSoulsValue: {colectedSoulsValue}");
+		Debug.Log($"Установка значения colectedSoulsValue: {colectedSoulsValue}");
 	}
 
 	public static void incrementСolectedSoulsValue()
@@ -76,7 +75,7 @@ public static class ValuesController
 	{
 		if (newScoreValue < 0)
 		{
-			Debug.LogError("<color=red>Счет меньше нуля</color>");
+			Debug.Log("<color=red>Счет меньше нуля</color>");
 			return;
 		}
 
