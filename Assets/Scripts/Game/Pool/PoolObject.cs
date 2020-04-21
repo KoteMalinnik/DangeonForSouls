@@ -30,16 +30,19 @@ public class PoolObject : MonoBehaviour
 
 	public void returnToPool()
 	{
+		if (parentPool == null) return;
+
 		if (reuseObjectOnInvisible) 
 		{
 			objectsController.useObject(this);
 			return;
 		}
+
 		parentPool.addObject(this);
 	}
 
 	void OnDestoy()
 	{
-		parentPool.removeObject(this);
+		if (parentPool != null) parentPool.removeObject(this);
 	}
 }
