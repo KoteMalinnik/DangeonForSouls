@@ -47,6 +47,6 @@ public static class Statements
 	public static void setGrounded(bool state)
 	{
 		grounded = state;
-		Debug.Log($"Касание платформы: {grounded}");
+		//Debug.Log($"Касание платформы: {grounded}");
 	}
 }

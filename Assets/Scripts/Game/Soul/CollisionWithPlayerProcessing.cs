@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(PoolObject))]
+/// <summary>
+/// Обработка столкновения Soul с Player
+/// </summary>
 public class CollisionWithPlayerProcessing : MonoBehaviour
 {
-	PoolObject poolObject = null;
-
-	void Awake()
-	{
-		poolObject = GetComponent<PoolObject>();
-	}
-
-    void OnTriggerEnter(Collider collision)
+	void OnTriggerEnter(Collider collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
 			ValuesController.incrementСolectedSoulsValue();
 			AudioManager.playCollectingSoulSound();
-			poolObject.returnToPool();
+
+			gameObject.layer = 4; //Сокрытие объекта от камеры, чтобы вызвать PoolObject.OnBecameInvisible()
 
 			return;
 		}

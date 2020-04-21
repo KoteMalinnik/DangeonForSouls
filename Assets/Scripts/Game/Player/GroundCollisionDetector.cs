@@ -6,6 +6,8 @@ using System.Collections;
 /// </summary>
 public class GroundCollisionDetector : MonoBehaviour
 {
+	//9-ый слой - Platform
+
 	void OnCollisionEnter(Collision coll)
 	{
 		if (coll.gameObject.layer != 9) return;

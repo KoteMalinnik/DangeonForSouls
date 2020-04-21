@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reuseObjectOnInvisible: 1
+  layer: 9
 --- !u!54 &-151609239818878024
 Rigidbody:
   m_ObjectHideFlags: 0

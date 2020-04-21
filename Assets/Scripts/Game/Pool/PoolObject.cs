@@ -8,7 +8,16 @@ using UnityEngine.SceneManagement;
 public class PoolObject : MonoBehaviour
 {
 	[SerializeField]
+	/// <summary>
+	/// Использовать объект, не добавляя его в очередь
+	/// </summary>
 	bool reuseObjectOnInvisible = false;
+
+	[SerializeField, Range(0, 10)]
+	/// <summary>
+	/// Слой, на котором распологается объект
+	/// </summary>
+	int layer = 0;
 
 	Pool parentPool = null;
 	ObjectsController objectsController = null;
@@ -30,6 +39,8 @@ public class PoolObject : MonoBehaviour
 
 	public void returnToPool()
 	{
+		gameObject.layer = layer;
+
 		if (parentPool == null)
 		{
 			Debug.LogWarning("Родительский пул пуст");
