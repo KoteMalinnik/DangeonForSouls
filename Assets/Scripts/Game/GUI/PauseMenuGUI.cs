@@ -43,8 +43,12 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	Animator pausePanelAnimator = null;
 
+	Recovery recovery = null;
+
 	void Awake()
 	{
+		Regular.checkObject(ref recovery);
+
 		continueOrRestart.text = _continue;
 
 		soulRecoveryCost = soulRecovery.GetComponentInChildren<Text>();
@@ -96,12 +100,10 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	public void __Continue()
 	{
-		if(!Statements.gameOver)
-		{
-			pauseButton.interactable = true;
-			pausePanel.SetActive(false);
-			Statements.setPause(false);
-		}
+		if (Statements.gameOver) return;
+
+		recoveryContinue();
+		Statements.setPause(false);
 	}
 
 	/// <summary>
@@ -123,8 +125,14 @@ public class PauseMenuGUI : baseGUI
 	/// </summary>
 	public void __SoulRecovery()
 	{
-		Recovery.applyRecovery();
-		__Continue();
+		recovery.applyRecovery();
+		recoveryContinue();
+	}
+
+	void recoveryContinue()
+	{
+		pauseButton.interactable = true;
+		pausePanel.SetActive(false);
 	}
 
 	void OnDestroy()

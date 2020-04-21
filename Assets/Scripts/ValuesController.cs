@@ -23,7 +23,7 @@ public static class ValuesController
 	/// <summary>
 	/// Цена бонуса восстановления
 	/// </summary>
-	public static int recoveryCostValue { get; private set; } = 100;
+	public static int recoveryCostValue { get; private set; } = 0; //100
 
 	/// <summary>
 	/// Установка очков лучшего счета
@@ -49,7 +49,7 @@ public static class ValuesController
 		colectedSoulsValue = newСolectedSoulsValue;
 		RuntimeGUI.updateCollectedSoulsValue(colectedSoulsValue);
 
-		Debug.Log($"Установка значения colectedSoulsValue: {colectedSoulsValue}");
+		//Debug.Log($"Установка значения colectedSoulsValue: {colectedSoulsValue}");
 	}
 
 	public static void incrementСolectedSoulsValue()

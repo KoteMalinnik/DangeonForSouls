@@ -33,9 +33,13 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 	[SerializeField]
 	PauseMenuGUI pauseMenuGUI = null;
 
+	[SerializeField]
+	Recovery recovery = null;
+
 	void Start()
 	{
 		Regular.checkObject(ref pauseMenuGUI);
+		Regular.checkObject(ref recovery);
 
 		if(allowAds)
 		{
@@ -128,7 +132,7 @@ public class AdvertisementController : MonoBehaviour, IUnityAdsListener
 
 	void startRecovery()
 	{
-		Recovery.startRecovery();
+		recovery.startRecovery();
 		pauseMenuGUI.__Continue();
 	}
 }

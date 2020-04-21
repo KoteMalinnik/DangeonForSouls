@@ -11,9 +11,9 @@ public class GameOverStateChecker : MonoBehaviour
 
 	void Awake()
 	{
-		cachedTransform = transform;
-
 		Regular.checkObject(ref pauseMenuGUI);
+
+		cachedTransform = transform;
 	}
 
     void Update()

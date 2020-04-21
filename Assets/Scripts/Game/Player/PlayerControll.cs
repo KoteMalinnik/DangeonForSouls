@@ -5,6 +5,8 @@
 [RequireComponent(typeof(InputController))]
 [RequireComponent(typeof(ScoreEnumerator))]
 [RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(Recovery))]
+
 /// <summary>
 /// Контроль первоночальных состояний для Player-a
 /// </summary>
