@@ -1,20 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 /// <summary>
 /// Сериализация данных
 /// </summary>
-public class SerializeParametrs : MonoBehaviour
+public static class SerializeParametrs
 {
-	//Т.к. объект находится только на сцене Preload,
-	//С его помощью необходимо перейти на другую сцену
-	void Awake()
-	{
-		loadAllParametrs();
-
-		SceneManager.LoadScene("MainMenu");
-	}
-
 	//Ключи для сериализуемых параметров
 	const string key_bestScoreValue = "bestScoreValue";
 	const string key_collectedSoulsValue = "collectedSoulsValue";
@@ -24,7 +15,7 @@ public class SerializeParametrs : MonoBehaviour
 	/// <summary>
 	/// Загрузка всех параметров
 	/// </summary>
-	void loadAllParametrs()
+	public static void loadAllParametrs()
 	{
 		Debug.Log("Загрузка параметров из PlayerPrefs");
 
@@ -46,7 +37,7 @@ public class SerializeParametrs : MonoBehaviour
 	/// </summary>
 	/// <param name="key">Ключ.</param>
 	/// <param name="defaultValue">Значение по умолчанию.</param>
-	int loadParametr(string key, int defaultValue)
+	static int loadParametr(string key, int defaultValue)
 	{
 		var parametrValue = PlayerPrefs.GetInt(key, defaultValue);
 
@@ -60,7 +51,7 @@ public class SerializeParametrs : MonoBehaviour
 	/// </summary>
 	/// <param name="key">Ключ.</param>
 	/// <param name="defaultValue">Значение по умолчанию.</param>
-	bool loadParametr(string key, bool defaultValue)
+	static bool loadParametr(string key, bool defaultValue)
 	{
 		var parametrValue = loadParametr(key, defaultValue ? 1 : 0);
 		bool statementValue = parametrValue == 1;
@@ -71,7 +62,7 @@ public class SerializeParametrs : MonoBehaviour
 	/// <summary>
 	/// Сохранение параметра parametrValue типа int с ключом key
 	/// </summary>
-	public static void saveParametr(string key, int parametrValue)
+	static void saveParametr(string key, int parametrValue)
 	{
 		PlayerPrefs.SetInt(key, parametrValue);
 
@@ -81,7 +72,7 @@ public class SerializeParametrs : MonoBehaviour
 	/// <summary>
 	/// Сохранение параметра statementValue типа bool с ключом key
 	/// </summary>
-	public static void saveParametr(string key, bool statementValue)
+	static void saveParametr(string key, bool statementValue)
 	{
 		int parametrValue = statementValue ? 1 : 0;
 		saveParametr(key, parametrValue);
