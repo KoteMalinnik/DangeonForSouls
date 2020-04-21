@@ -9,6 +9,9 @@ public class TutorialGUI : MonoBehaviour
 	[SerializeField]
 	bool alwaysShowTutorialPanel = false;
 
+	[SerializeField]
+	GameObject target = null;
+
 	void Start()
 	{
 		#if UNITY_EDITOR
@@ -30,7 +33,7 @@ public class TutorialGUI : MonoBehaviour
 	IEnumerator showTutorialPanel()
 	{
 		Statements.setPause(true); //Состояние паузы вкл.
-		gameObject.SetActive(true); //Показать панель обучения
+		target.SetActive(true); //Показать панель обучения
 
 		Debug.Log("Панель обучения вкл.");
 
@@ -44,7 +47,7 @@ public class TutorialGUI : MonoBehaviour
 
 		Debug.Log("Панель обучения выкл.");
 
-		gameObject.SetActive(false); //Отключить панель обучения
+		target.SetActive(false); //Отключить панель обучения
 		Statements.setPause(false); //Состояние паузы выкл.
 
 		yield return null;
